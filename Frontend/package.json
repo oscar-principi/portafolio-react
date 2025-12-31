@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "homepage": "https://oscar-principi.github.io/",
+  "homepage": "./",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,6 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
+    "postbuild": "echo oscarprincipi.com.ar > dist/CNAME",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
