@@ -2,9 +2,9 @@
 
 Este proyecto es parte de mi portafolio personal:
 - Tiene un frontend con selección de temas, el tipo de tema se almacena en una variable de local storage.
-- Tiene mis proyectos mas representativos para mostrar con imagenes y tecnologias y links a GitHub los que son publicos.
+- Tiene mis proyectos mas representativos para mostrar con imagenes, tecnologias y links a GitHub los que son publicos.
 - Tiene validaciones en el frontend y backend para enviar el formulario. Tiene que estar completo y con el formato correcto de email(Regex) para que se desbloquee el boton enviar.
-- Tiene un formulario para enviarme correos con cotrol de Ratelimit validado en el cliente desde el frmulario y desde el backend.
+- Tiene un formulario para enviarme correos con control de RateLimit de 1 minuto, validado en el cliente desde el formulario y desde el backend tambien.
 
 🏗️ Arquitectura y Diseño
 
@@ -21,7 +21,7 @@ Este proyecto es parte de mi portafolio personal:
 - Lenguaje Backend: C# (.NET Core)
 - Frontend: React + Vite + TypeScript + Tailwind CSS
 - HTTP Requests: Axios
-- Despliegue: Github Page para el frontend, Azure para el backend.
+- Despliegue: Github Page para el frontend, Azure para el backend, CloudFlare para CDN y seguridad.
 
 Tema Claro
 <img width="1855" height="919" alt="portafolio" src="https://github.com/user-attachments/assets/79388762-d03f-40c8-9cea-4cdd322d1fc2" />
