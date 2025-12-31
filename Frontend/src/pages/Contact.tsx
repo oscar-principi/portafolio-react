@@ -1,13 +1,11 @@
 import { toast } from "sonner";
 import React, { useState } from "react";
 import { Send, Loader2 } from "lucide-react";
-// Importamos la interfaz para usarla como tipo
 import { ContactApi, type ContactRequest } from "../api/ContactApi";
 
 export default function Contact() {
   const [loading, setLoading] = useState(false);
   
-  // Agregamos <ContactRequest> aquí para tipar el estado del formulario
   const [form, setForm] = useState<ContactRequest>({
     name: "",
     email: "",
@@ -29,27 +27,34 @@ export default function Contact() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!isFormValid) return;
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  if (!isFormValid) return;
 
-    setLoading(true);
+  setLoading(true);
 
-    try {
-      const response = await ContactApi.sendContact(form);
+  try {
+    const response = await ContactApi.sendContact(form);
 
-      if (response.success) {
-        toast.success("¡Mensaje enviado con éxito!"); 
-        setForm({ name: "", email: "", motivo: "", mensaje: "" });
+    if (response.success) {
+      toast.success("¡Mensaje enviado con éxito!");
+      setForm({ name: "", email: "", motivo: "", mensaje: "" });
+      localStorage.setItem("lastContactSent", Date.now().toString());
+    } else {
+      toast.error("Error: " + response.message);
+    }
+    } catch (error: any) {
+      if (error.response?.status === 429) {
+        toast.error("Esperá 1 minuto antes de volver a enviar.");
       } else {
-        toast.error("Error: " + response.message); 
+        toast.error("Ocurrió un error inesperado al enviar el mensaje.");
       }
-    } catch (ex) {
-      toast.error("Ocurrió un error inesperado al enviar el mensaje.");
-    } finally {
+    }
+    finally {
       setLoading(false);
     }
-  };
+};
+
 
   return (
     <section id="contacto" className="min-h-screen flex flex-col justify-center px-6 py-2 bg-bg-light dark:bg-bg-dark transition-colors duration-300">
