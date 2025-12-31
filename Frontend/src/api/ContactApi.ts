@@ -17,7 +17,7 @@ export interface ApiResponse {
 // Configuramos la conexión
 const apiClient = axios.create({
   // URL de tu API .NET (en desarrollo suele ser localhost)
-  baseURL: 'https://localhost:7125/api', 
+  baseURL: 'https://portafoliopersonalbackend-h6g9fge4b6ejcvam.canadacentral-01.azurewebsites.net', 
   headers: {
     'Content-Type': 'application/json',
   },
