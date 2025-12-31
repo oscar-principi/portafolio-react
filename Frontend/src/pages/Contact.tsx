@@ -35,20 +35,20 @@ export default function Contact() {
 
     setLoading(true);
 
-try {
-  const response = await ContactApi.sendContact(form);
+    try {
+      const response = await ContactApi.sendContact(form);
 
-  if (response.success) {
-    toast.success("¡Mensaje enviado con éxito!"); // Reemplaza alert
-    setForm({ name: "", email: "", motivo: "", mensaje: "" });
-  } else {
-    toast.error("Error: " + response.message); // Reemplaza alert
-  }
-} catch (ex) {
-  toast.error("Ocurrió un error inesperado al enviar el mensaje.");
-} finally {
-  setLoading(false);
-}
+      if (response.success) {
+        toast.success("¡Mensaje enviado con éxito!"); 
+        setForm({ name: "", email: "", motivo: "", mensaje: "" });
+      } else {
+        toast.error("Error: " + response.message); 
+      }
+    } catch (ex) {
+      toast.error("Ocurrió un error inesperado al enviar el mensaje.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

@@ -35,7 +35,9 @@ export default function Header() {
       <header
         className="fixed top-0 left-0 w-full z-50 bg-bg-light/95 dark:bg-bg-dark/95 backdrop-blur-sm transition-all duration-300 border-b border-primary/10"
         style={{
-          boxShadow: darkMode ? "none" : "0 4px 12px rgba(0, 123, 255, 0.1)",
+          boxShadow: darkMode 
+            ? "0 4px 20px rgba(255, 0, 0, 0.15)" // Sombra difuminada roja para modo oscuro
+            : "0 4px 12px rgba(0, 123, 255, 0.1)", // Sombra original para modo claro
         }}
       >
         <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
