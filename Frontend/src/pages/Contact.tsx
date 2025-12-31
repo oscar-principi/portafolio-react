@@ -31,10 +31,16 @@ const [cooldown, setCooldown] = useState(false);
 
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
-  if (!isFormValid || cooldown) return;
+
+  if (!isFormValid) return;
+
+  if (cooldown) {
+    toast.error("⏳ Esperá 1 minuto antes de volver a enviar el formulario.");
+    return;
+  }
 
   setLoading(true);
-  setCooldown(true); 
+  setCooldown(true);
 
   try {
     const response = await ContactApi.sendContact(form);
@@ -46,13 +52,14 @@ const handleSubmit = async (e: React.FormEvent) => {
       toast.error("Error: " + response.message);
     }
   } catch (error: any) {
-      toast.error("Ocurrió un error inesperado al enviar el mensaje.");
+    toast.error("Ocurrió un error inesperado al enviar el mensaje.");
   } finally {
     setLoading(false);
     // desbloquea después de 1 minuto
     setTimeout(() => setCooldown(false), 60_000);
   }
 };
+
 
 
 
