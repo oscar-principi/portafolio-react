@@ -145,7 +145,12 @@ const handleSubmit = async (e: React.FormEvent) => {
           <div className="flex justify-center pt-4">
             <button
               type="submit"
-              disabled={!isFormValid || loading}
+              disabled={!isFormValid || loading || cooldown}
+              onClick={() => {
+                if (cooldown) {
+                  toast.error("⏳ Esperá 1 minuto antes de volver a enviar el formulario.");
+                }
+              }}
               className={`
                 group/btn relative w-full md:w-64 py-4 font-bold rounded-full overflow-hidden shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2
                 ${!isFormValid || loading 
