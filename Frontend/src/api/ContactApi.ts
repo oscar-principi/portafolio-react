@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { AxiosError } from 'axios';
 
 // Esto es el espejo de tu DTO de C# (Shared)
 export interface ContactRequest {
