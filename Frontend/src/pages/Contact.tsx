@@ -39,7 +39,6 @@ const handleSubmit = async (e: React.FormEvent) => {
     if (response.success) {
       toast.success("¡Mensaje enviado con éxito!");
       setForm({ name: "", email: "", motivo: "", mensaje: "" });
-      localStorage.setItem("lastContactSent", Date.now().toString());
     } else {
       toast.error("Error: " + response.message);
     }
