@@ -10,7 +10,7 @@ export interface ContactRequest {
 
 // Estructura de la respuesta que esperas de tu API
 export interface ApiResponse {
-  success: boolean;
+  success: boolean;  
   message?: string;
 }
 
@@ -24,16 +24,19 @@ const apiClient = axios.create({
 });
 
 export const ContactApi = {
-  // Este método es el que llamas desde el componente Contact.tsx
   sendContact: async (contact: ContactRequest): Promise<ApiResponse> => {
     try {
-      const response = await apiClient.post<ApiResponse>('/contact', contact);
-      return response.data;
+      const response = await apiClient.post('/contact', contact);
+      
+      // Forzamos la lectura tanto en mayúsculas como en minúsculas por seguridad
+      return {
+        success: response.data.success ?? response.data.Success,
+        message: response.data.message ?? response.data.Message
+      };
     } catch (error: any) {
-      // Manejo de errores por si la API está caída
       return {
         success: false,
-        message: error.response?.data?.message || 'No se pudo conectar con el servidor'
+        message: error.response?.data?.Message || error.response?.data?.message || 'No se pudo conectar con el servidor'
       };
     }
   },
