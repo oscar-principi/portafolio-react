@@ -34,14 +34,15 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col items-center space-y-4 text-center">
-          <p className="text-xs font-bold uppercase tracking-widest text-primary">
+          <p className="text-xs font-bold uppercase tracking-widest ">
             Visitá mis perfiles
           </p>
           <div className="flex gap-4">
             <a 
               href="https://linkedin.com/in/oscar-principi/" 
               target="_blank" 
-              className="px-6 py-2 rounded-full border border-primary text-primary text-sm font-medium hover:bg-primary hover:text-white transition-all"
+              rel="noopener noreferrer" 
+              className="px-6 py-2 rounded-full border border-[#0077b5] text-[#0077b5] text-sm font-medium hover:bg-[#0077b5] hover:text-white transition-all"
             >
               LinkedIn
             </a>
