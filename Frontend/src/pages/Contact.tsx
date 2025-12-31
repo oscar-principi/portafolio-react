@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { Send, Loader2 } from "lucide-react";
-import { ContactApi, ContactRequest } from "../api/ContactApi";
+// Importamos la interfaz para usarla como tipo
+import { ContactApi, type ContactRequest } from "../api/ContactApi";
 
 export default function Contact() {
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({
+  
+  // Agregamos <ContactRequest> aquí para tipar el estado del formulario
+  const [form, setForm] = useState<ContactRequest>({
     name: "",
     email: "",
     motivo: "",
     mensaje: "",
   });
 
-  // Validación similar a la de Blazor
   const isEmailValid = (email: string) => {
     return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
   };
@@ -26,28 +28,29 @@ export default function Contact() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  if (!isFormValid) return;
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!isFormValid) return;
 
-  setLoading(true);
+    setLoading(true);
 
-  try {
-    // Esto es el equivalente al "await ContactApi.SendContact(contact)"
-    const response = await ContactApi.sendContact(form);
+    try {
+      const response = await ContactApi.sendContact(form);
 
-    if (response.success) {
-      // Aquí usarías tu sistema de notificaciones (Snackbar)
-      console.log("Mensaje enviado correctamente");
-      setForm({ name: "", email: "", motivo: "", mensaje: "" });
-    } else {
-      console.error("Error desde el servidor:", response.message);
+      if (response.success) {
+        // En React, podrías usar una librería como 'sonner' o 'react-hot-toast'
+        // para reemplazar el Snackbar de MudBlazor
+        alert("¡Mensaje enviado con éxito!"); 
+        setForm({ name: "", email: "", motivo: "", mensaje: "" });
+      } else {
+        alert("Error: " + response.message);
+      }
+    } catch (ex) {
+      console.error("Error fatal:", ex);
+      alert("Ocurrió un error inesperado al enviar el mensaje.");
+    } finally {
+      setLoading(false);
     }
-  } catch (ex) {
-    console.error("Error fatal:", ex);
-  } finally {
-    setLoading(false);
-  }
   };
 
   return (
@@ -58,7 +61,6 @@ const handleSubmit = async (e: React.FormEvent) => {
         <h2 className="text-4xl md:text-5xl font-black text-text-light dark:text-text-dark mb-2 tracking-tighter uppercase">
           Contacto
         </h2>
-        {/* Línea decorativa animada */}
         <div className="w-12 h-1.5 bg-primary rounded-full transition-all duration-500 group-hover:w-24"></div>
         
         <p className="text-muted-light dark:text-muted-dark mt-6 text-center max-w-lg text-lg">
@@ -70,7 +72,6 @@ const handleSubmit = async (e: React.FormEvent) => {
       <div className="w-full max-w-2xl mx-auto bg-surface-light dark:bg-surface-dark p-8 md:p-12 rounded-[2rem] shadow-xl border border-transparent hover:border-primary/20 hover:-translate-y-2 transition-all duration-300 group">
         
         <form onSubmit={handleSubmit} className="space-y-6">
-          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Nombre */}
             <div className="relative">
@@ -82,7 +83,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                 placeholder=" "
                 className="peer w-full bg-bg-light dark:bg-bg-dark border-b-2 border-muted-light/30 dark:border-muted-dark/20 py-3 px-1 outline-none focus:border-primary transition-colors text-text-light dark:text-text-dark"
               />
-              <label className="absolute left-1 top-3 text-muted-light dark:text-muted-dark transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-xs peer-focus:text-primary peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs">
+              <label className="absolute left-1 top-3 text-muted-light dark:text-muted-dark transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-xs peer-focus:text-primary peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs cursor-text">
                 Nombre
               </label>
             </div>
@@ -97,7 +98,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                 placeholder=" "
                 className="peer w-full bg-bg-light dark:bg-bg-dark border-b-2 border-muted-light/30 dark:border-muted-dark/20 py-3 px-1 outline-none focus:border-primary transition-colors text-text-light dark:text-text-dark"
               />
-              <label className="absolute left-1 top-3 text-muted-light dark:text-muted-dark transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-xs peer-focus:text-primary peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs">
+              <label className="absolute left-1 top-3 text-muted-light dark:text-muted-dark transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-xs peer-focus:text-primary peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs cursor-text">
                 Email
               </label>
             </div>
@@ -113,7 +114,7 @@ const handleSubmit = async (e: React.FormEvent) => {
               placeholder=" "
               className="peer w-full bg-bg-light dark:bg-bg-dark border-b-2 border-muted-light/30 dark:border-muted-dark/20 py-3 px-1 outline-none focus:border-primary transition-colors text-text-light dark:text-text-dark"
             />
-            <label className="absolute left-1 top-3 text-muted-light dark:text-muted-dark transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-xs peer-focus:text-primary peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs">
+            <label className="absolute left-1 top-3 text-muted-light dark:text-muted-dark transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-xs peer-focus:text-primary peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs cursor-text">
               Motivo
             </label>
           </div>
@@ -128,7 +129,7 @@ const handleSubmit = async (e: React.FormEvent) => {
               placeholder=" "
               className="peer w-full bg-bg-light dark:bg-bg-dark border-b-2 border-muted-light/30 dark:border-muted-dark/20 py-3 px-1 outline-none focus:border-primary transition-colors text-text-light dark:text-text-dark resize-none"
             />
-            <label className="absolute left-1 top-3 text-muted-light dark:text-muted-dark transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-xs peer-focus:text-primary peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs">
+            <label className="absolute left-1 top-3 text-muted-light dark:text-muted-dark transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-xs peer-focus:text-primary peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs cursor-text">
               Mensaje
             </label>
           </div>
@@ -162,7 +163,6 @@ const handleSubmit = async (e: React.FormEvent) => {
               )}
             </button>
           </div>
-
         </form>
       </div>
     </section>
