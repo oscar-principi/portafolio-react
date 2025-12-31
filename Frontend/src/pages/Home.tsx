@@ -51,7 +51,7 @@ export default function Home() {
                   autoStart: true,
                   loop: false,
                   cursor: "_",
-                  delay: 75,
+                  delay: 140,
                   wrapperClassName: "text-text-light dark:text-text-dark", 
                 }}
               />
