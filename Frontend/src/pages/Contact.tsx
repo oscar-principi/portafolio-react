@@ -27,11 +27,14 @@ export default function Contact() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+const [cooldown, setCooldown] = useState(false);
+
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
-  if (!isFormValid) return;
+  if (!isFormValid || cooldown) return;
 
   setLoading(true);
+  setCooldown(true); 
 
   try {
     const response = await ContactApi.sendContact(form);
@@ -42,17 +45,19 @@ const handleSubmit = async (e: React.FormEvent) => {
     } else {
       toast.error("Error: " + response.message);
     }
-    } catch (error: any) {
-      if (error.response?.status === 429) {
-        toast.error("Esperá 1 minuto antes de volver a enviar.");
-      } else {
-        toast.error("Ocurrió un error inesperado al enviar el mensaje.");
-      }
+  } catch (error: any) {
+    if (error.response?.status === 429) {
+      toast.error("Demasiadas solicitudes. Esperá 1 minuto y volvé a intentar.");
+    } else {
+      toast.error("Ocurrió un error inesperado al enviar el mensaje.");
     }
-    finally {
-      setLoading(false);
-    }
+  } finally {
+    setLoading(false);
+    // desbloquea después de 1 minuto
+    setTimeout(() => setCooldown(false), 60_000);
+  }
 };
+
 
 
   return (
