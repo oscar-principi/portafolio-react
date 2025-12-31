@@ -1,16 +1,11 @@
+import Typewriter from 'typewriter-effect';
+
 export default function Home() {
-  // const tags = [
-  //   "Impacto Social",
-  //   "Aprendizaje",
-  //   "Responsabilidad",
-  //   "Colaboración",
-  //   "Eficiencia",
-  // ];
 
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center px-6 bg-bg-light dark:bg-bg-dark transition-colors duration-300"
+      className="min-h-screen px-6 flex items-center bg-bg-light dark:bg-bg-dark transition-colors duration-300" 
     >
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-15 items-center">
         
@@ -42,12 +37,24 @@ export default function Home() {
 
         {/* Texto y Tarjeta de Presentación */}
         <div className="space-y-8 order-1 md:order-2">
-          <header className="space-y-2 text-center md:text-left">
+          <header className="space-y-2 text-center md:text-left min-h-[120px]">
             <h1 className="text-4xl md:text-5xl font-light text-text-light dark:text-text-dark leading-tight">
-              Desarrollo de{" "}
-              <span className="block font-black text-primary uppercase tracking-tighter">
-                Software
-              </span>
+              <Typewriter
+                onInit={(typewriter) => {
+                  typewriter
+                    .typeString('Desarrollo de')
+                    .typeString('<br />') 
+                    .typeString('<span class="font-black text-primary uppercase tracking-tighter">Software</span>')
+                    .start();
+                }}
+                options={{
+                  autoStart: true,
+                  loop: false,
+                  cursor: "_",
+                  delay: 75,
+                  wrapperClassName: "text-text-light dark:text-text-dark", 
+                }}
+              />
             </h1>
           </header>
 
@@ -63,28 +70,6 @@ export default function Home() {
                   <span className="font-bold">UTN FRGP</span>
                 </p>
               </div>
-
-              {/* <div className="w-12 h-[2px] bg-primary/20 mx-auto md:mx-0"></div>
-
-              <div>
-                <h3 className="font-bold text-sm uppercase tracking-widest text-primary mb-3 text-center md:text-left">
-                  Mi Compromiso
-                </h3>
-                <p className="italic text-muted-light dark:text-muted-dark text-lg text-center md:text-left">
-                  "Crear software con <span className="text-text-light dark:text-text-dark font-semibold">integridad</span> e <span className="text-text-light dark:text-text-dark font-semibold">impacto social</span>."
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-2 pt-4 justify-center md:justify-start">
-                {tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-4 py-1.5 text-xs font-bold rounded-full border border-primary/20 bg-primary/5 text-primary hover:bg-primary hover:text-white transition-colors duration-300 cursor-default"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div> */}
             </div>
           </div>
         </div>
