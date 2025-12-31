@@ -22,19 +22,19 @@ export default function Home() {
             
               <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white dark:border-surface-dark shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
                 
-                {/* IMAGEN MODO CLARO */}
-                <img
-                  src={`${import.meta.env.BASE_URL}images/perfil/perfil-claro.png`}
-                  alt="Oscar Principi"
-                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-100 dark:opacity-0"
-                />
+              {/* IMAGEN MODO CLARO */}
+              <img
+                src={`${import.meta.env.BASE_URL}images/perfil/perfil-claro.png`}
+                alt="Oscar Principi Claro"
+                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-100 dark:opacity-0"
+              />
 
-                {/* IMAGEN MODO OSCURO */}
-                <img
-                  src={`${import.meta.env.BASE_URL}images/perfil/perfil-oscuro.png`}
-                  alt="Oscar Principi"
-                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-100 dark:opacity-0"
-                />
+              {/* IMAGEN MODO OSCURO */}
+              <img
+                src={`${import.meta.env.BASE_URL}images/perfil/perfil-oscuro.png`}
+                alt="Oscar Principi Oscuro"
+                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0 dark:opacity-100" 
+              />
 
               </div>
           </div>
