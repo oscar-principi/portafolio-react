@@ -21,7 +21,7 @@ Este proyecto es parte de mi portafolio personal:
 - Lenguaje Backend: C# (.NET Core)
 - Frontend: React + Vite + TypeScript + Tailwind CSS
 - HTTP Requests: Axios
-- Despliegue: Github Page para el frontend, Azure para el backend.
+- Despliegue: Github Page para el frontend, Azure para el backend, CloudFlare para CDN y seguridad.
 
 Tema Claro
 <img width="1855" height="919" alt="portafolio" src="https://github.com/user-attachments/assets/79388762-d03f-40c8-9cea-4cdd322d1fc2" />
