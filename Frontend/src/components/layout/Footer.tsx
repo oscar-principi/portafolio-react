@@ -48,7 +48,8 @@ export default function Footer() {
             <a 
               href="https://github.com/oscar-principi" 
               target="_blank" 
-              className="px-6 py-2 rounded-full border border-muted-light text-text-light dark:text-text-dark text-sm font-medium hover:bg-text-light hover:text-white dark:hover:bg-text-dark dark:hover:bg-bg-dark transition-all"
+              rel="noopener noreferrer" 
+              className="inline-flex items-center gap-2 px-6 py-2 rounded-full border border-muted-light text-text-light dark:text-text-dark text-sm font-medium hover:bg-text-light hover:text-white dark:hover:bg-text-dark dark:hover:text-black transition-all duration-300"
             >
               GitHub
             </a>

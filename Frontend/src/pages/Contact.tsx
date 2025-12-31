@@ -1,3 +1,4 @@
+import { toast } from "sonner";
 import React, { useState } from "react";
 import { Send, Loader2 } from "lucide-react";
 // Importamos la interfaz para usarla como tipo
@@ -34,27 +35,24 @@ export default function Contact() {
 
     setLoading(true);
 
-    try {
-      const response = await ContactApi.sendContact(form);
+try {
+  const response = await ContactApi.sendContact(form);
 
-      if (response.success) {
-        // En React, podrías usar una librería como 'sonner' o 'react-hot-toast'
-        // para reemplazar el Snackbar de MudBlazor
-        alert("¡Mensaje enviado con éxito!"); 
-        setForm({ name: "", email: "", motivo: "", mensaje: "" });
-      } else {
-        alert("Error: " + response.message);
-      }
-    } catch (ex) {
-      console.error("Error fatal:", ex);
-      alert("Ocurrió un error inesperado al enviar el mensaje.");
-    } finally {
-      setLoading(false);
-    }
+  if (response.success) {
+    toast.success("¡Mensaje enviado con éxito!"); // Reemplaza alert
+    setForm({ name: "", email: "", motivo: "", mensaje: "" });
+  } else {
+    toast.error("Error: " + response.message); // Reemplaza alert
+  }
+} catch (ex) {
+  toast.error("Ocurrió un error inesperado al enviar el mensaje.");
+} finally {
+  setLoading(false);
+}
   };
 
   return (
-    <section id="contacto" className="min-h-screen flex flex-col justify-center px-6 py-20 bg-bg-light dark:bg-bg-dark transition-colors duration-300">
+    <section id="contacto" className="min-h-screen flex flex-col justify-center px-6 py-2 bg-bg-light dark:bg-bg-dark transition-colors duration-300">
       
       {/* Encabezado */}
       <div className="flex flex-col items-center mb-12 group">
