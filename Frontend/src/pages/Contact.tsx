@@ -46,11 +46,7 @@ const handleSubmit = async (e: React.FormEvent) => {
       toast.error("Error: " + response.message);
     }
   } catch (error: any) {
-    if (error.response?.status === 429) {
-      toast.error("Demasiadas solicitudes. Esperá 1 minuto y volvé a intentar.");
-    } else {
       toast.error("Ocurrió un error inesperado al enviar el mensaje.");
-    }
   } finally {
     setLoading(false);
     // desbloquea después de 1 minuto
