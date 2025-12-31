@@ -55,7 +55,6 @@ const handleSubmit = async (e: React.FormEvent) => {
     toast.error("Ocurrió un error inesperado al enviar el mensaje.");
   } finally {
     setLoading(false);
-    // desbloquea después de 1 minuto
     setTimeout(() => setCooldown(false), 60_000);
   }
 };
@@ -146,20 +145,17 @@ const handleSubmit = async (e: React.FormEvent) => {
 
           {/* Botón de envío */}
           <div className="flex justify-center pt-4">
-            <button
+           <button
               type="submit"
-              disabled={!isFormValid || loading || cooldown}
-              onClick={() => {
+              onClick={(e) => {
                 if (cooldown) {
                   toast.error("⏳ Esperá 1 minuto antes de volver a enviar el formulario.");
+                  e.preventDefault();
                 }
               }}
               className={`
                 group/btn relative w-full md:w-64 py-4 font-bold rounded-full overflow-hidden shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2
-                ${!isFormValid || loading 
-                  ? "bg-gray-400 dark:bg-gray-600 cursor-not-allowed text-gray-200" 
-                  : "bg-primary text-white hover:shadow-primary/30 hover:-translate-y-1 cursor-pointer"
-                }
+                ${!isFormValid || loading ? "bg-gray-400 text-gray-200 cursor-not-allowed" : "bg-primary text-white hover:-translate-y-1"}
               `}
             >
               {loading ? (
@@ -169,10 +165,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                 </>
               ) : (
                 <>
-                  <Send 
-                    size={18} 
-                    className={`transition-transform ${isFormValid ? "group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" : ""}`} 
-                  />
+                  <Send size={18} />
                   <span>Enviar Mensaje</span>
                 </>
               )}
