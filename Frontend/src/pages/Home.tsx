@@ -1,7 +1,3 @@
-import perfilClaro from '../../public/images/perfil/perfil-claro.png';
-import perfilOscuro from '../../public/images/perfil/perfil-oscuro.png';
-
-
 export default function Home() {
   // const tags = [
   //   "Impacto Social",
@@ -28,16 +24,16 @@ export default function Home() {
                 
                 {/* IMAGEN MODO CLARO */}
                 <img
-                  src={perfilClaro}
+                  src={`${import.meta.env.BASE_URL}images/perfil/perfil-claro.png`}
                   alt="Oscar Principi"
                   className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-100 dark:opacity-0"
                 />
 
                 {/* IMAGEN MODO OSCURO */}
                 <img
-                  src={perfilOscuro}
-                  alt="Oscar Principi"  
-                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0 dark:opacity-100"
+                  src={`${import.meta.env.BASE_URL}images/perfil/perfil-oscuro.png`}
+                  alt="Oscar Principi"
+                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-100 dark:opacity-0"
                 />
 
               </div>

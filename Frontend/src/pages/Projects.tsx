@@ -1,13 +1,5 @@
 // Cambiamos la importación a react-icons
 import { FiGithub } from "react-icons/fi";
-import imgEcommerce from '../assets/images/proyects/ecommerceb2c.png';
-import imgHomeBanking from '../assets/images/proyects/home-banking.png';
-import imgGestionMedica from '../assets/images/proyects/gestion-medica.png';
-import imgGestorProductos from '../assets/images/proyects/gestor-productos.png';
-import imgAmigoInvisible from '../assets/images/proyects/amigo-invisible.png';
-import imgMuebleria from '../assets/images/proyects/muebleria.png';
-import imgTetris from '../assets/images/proyects/tetris.png';
-import imgVeterinaria from '../assets/images/proyects/gestion-veterinaria.png';
 
 interface ProyectoItem {
   titulo: string;
@@ -19,61 +11,14 @@ interface ProyectoItem {
 
 export default function Projects() {
   const proyectos: ProyectoItem[] = [
-    { 
-      titulo: "Aplicación Web: Ecommerce", 
-      descripcion: "Gestión de usuarios, tiendas y productos. Carrito de compra y pagos con MercadoPago.", 
-      imageUrl: imgEcommerce, // Usamos la variable importada
-      tags: ["Blazor", ".NET Core", "LINQ", "Entity", "Identity"] 
-    },
-    { 
-      titulo: "Aplicación Web: Home Banking", 
-      descripcion: "Gestión de usuarios, cuentas, transferencias, préstamos y reportes.", 
-      imageUrl: imgHomeBanking, 
-      githubUrl: "https://github.com/oscar-principi/Sistema-de-Home-Banking", 
-      tags: ["Java", "JSP", "Servlets", "JDBC", "T-SQL"] 
-    },
-    { 
-      titulo: "Aplicación Web: Gestión Médica", 
-      descripcion: "Gestión de usuarios, turnos y reportes médicos.", 
-      imageUrl: imgGestionMedica, 
-      githubUrl: "https://github.com/oscar-principi/Sistema-de-Gesti-n-Medica", 
-      tags: ["Bootstrap", ".NET Framework", "T-SQL", "Store Procedure"] 
-    },
-    { 
-      titulo: "Gestión de Productos (WPF)", 
-      descripcion: "Sistema de escritorio para manejar stock con filtros avanzados.", 
-      imageUrl: imgGestorProductos, 
-      githubUrl: "https://github.com/oscar-principi/Gestion-de-productos-WPF", 
-      tags: ["WPF", "EF", "MVC", "T-SQL"] 
-    },
-    { 
-      titulo: "Amigo Invisible WhatsApp", 
-      descripcion: "Sorteo aleatorio con envío automático por API de WhatsApp.", 
-      imageUrl: imgAmigoInvisible, 
-      githubUrl: "https://github.com/oscar-principi/Amigo-Invisible-por-Wsp", 
-      tags: ["Blazor", ".NET Core", "NoSQL"] 
-    },
-    { 
-      titulo: "Sitio Web: Mueblería", 
-      descripcion: "Catálogo online y contacto directo mediante redes sociales.", 
-      imageUrl: imgMuebleria, 
-      githubUrl: "https://github.com/oscar-principi/Muebles-Finochio", 
-      tags: ["HTML", "CSS", "Javascript"] 
-    },
-    { 
-      titulo: "Juego: Tetris C++", 
-      descripcion: "Recreación del clásico Tetris usando la librería Raylib.", 
-      imageUrl: imgTetris, 
-      githubUrl: "https://github.com/oscar-principi/Tetris-C-Raylib", 
-      tags: ["C++", "Raylib", "Archivos"] 
-    },
-    { 
-      titulo: "Gestión Veterinaria", 
-      descripcion: "Control de clientes, mascotas, turnos y expedientes.", 
-      imageUrl: imgVeterinaria, 
-      githubUrl: "https://github.com/oscar-principi/PetClinicApp", 
-      tags: ["C/C++", "Rlutil", "Archivos"] 
-    }
+    { titulo: "Aplicación Web: Ecommerce", descripcion: "Gestión de usuarios, tiendas y productos. Carrito de compra y pagos con MercadoPago.", imageUrl: "images/proyects/ecommerceb2c.png", tags: ["Blazor", ".NET Core", "LINQ", "Entity", "Identity"] },
+    { titulo: "Aplicación Web: Home Banking", descripcion: "Gestión de usuarios, cuentas, transferencias, préstamos y reportes.", imageUrl: "images/proyects/home-banking.png", githubUrl: "https://github.com/oscar-principi/Sistema-de-Home-Banking", tags: ["Java", "JSP", "Servlets", "JDBC", "T-SQL"] },
+    { titulo: "Aplicación Web: Gestión Médica", descripcion: "Gestión de usuarios, turnos y reportes médicos.", imageUrl: "images/proyects/gestion-medica.png", githubUrl: "https://github.com/oscar-principi/Sistema-de-Gesti-n-Medica", tags: ["Bootstrap", ".NET Framework", "T-SQL", "Store Procedure"] },
+    { titulo: "Gestión de Productos (WPF)", descripcion: "Sistema de escritorio para manejar stock con filtros avanzados.", imageUrl: "images/proyects/gestor-productos.png", githubUrl: "https://github.com/oscar-principi/Gestion-de-productos-WPF", tags: ["WPF", "EF", "MVC", "T-SQL"] },
+    { titulo: "Amigo Invisible WhatsApp", descripcion: "Sorteo aleatorio con envío automático por API de WhatsApp.", imageUrl: "images/proyects/amigo-invisible.png", githubUrl: "https://github.com/oscar-principi/Amigo-Invisible-por-Wsp", tags: ["Blazor", ".NET Core", "NoSQL"] },
+    { titulo: "Sitio Web: Mueblería", descripcion: "Catálogo online y contacto directo mediante redes sociales.", imageUrl: "images/proyects/muebleria.png", githubUrl: "https://github.com/oscar-principi/Muebles-Finochio", tags: ["HTML", "CSS", "Javascript"] },
+    { titulo: "Juego: Tetris C++", descripcion: "Recreación del clásico Tetris usando la librería Raylib.", imageUrl: "images/proyects/tetris.png", githubUrl: "https://github.com/oscar-principi/Tetris-C-Raylib", tags: ["C++", "Raylib", "Archivos"] },
+    { titulo: "Gestión Veterinaria", descripcion: "Control de clientes, mascotas, turnos y expedientes.", imageUrl: "images/proyects/gestion-veterinaria.png", githubUrl: "https://github.com/oscar-principi/PetClinicApp", tags: ["C/C++", "Rlutil", "Archivos"] }
   ];
 
   return (
@@ -98,8 +43,8 @@ export default function Projects() {
             >
               <div className="w-full h-56 md:h-64 overflow-hidden rounded-2xl bg-white dark:bg-background-dark flex items-center justify-center mb-6 dark:border-gray-800">
                 <img 
-                  src={proyecto.imageUrl} 
-                  alt={proyecto.titulo} 
+                  src={`${import.meta.env.BASE_URL}${proyecto.imageUrl}`}
+                  alt={proyecto.titulo}
                   className="w-full h-full object-contain"
                 />
               </div>
