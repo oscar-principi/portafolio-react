@@ -75,7 +75,7 @@ export default function Projects() {
                     href={proyecto.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-muted-light text-text-light dark:text-text-dark text-sm font-medium hover:bg-text-light hover:text-white dark:hover:bg-text-dark dark:hover:text-background-dark transition-all duration-300"
+                    className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-muted-light text-text-light dark:text-text-dark text-sm font-medium hover:bg-text-light hover:text-white dark:hover:bg-text-dark dark:hover:text-black transition-all duration-300"
                   >
                     <FiGithub size={18} />
                     Ver en GitHub
