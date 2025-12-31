@@ -1,5 +1,5 @@
-import perfilClaro from '../public/images/perfil/perfil-claro.png';
-import perfilOscuro from '../public/images/perfil/perfil-oscuro.png';
+import perfilClaro from '../../public/images/perfil/perfil-claro.png';
+import perfilOscuro from '../../public/images/perfil/perfil-oscuro.png';
 
 
 export default function Home() {
