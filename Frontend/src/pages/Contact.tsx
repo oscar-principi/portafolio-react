@@ -65,7 +65,6 @@ const handleSubmit = async (e: React.FormEvent) => {
   return (
     <section id="contacto" className="min-h-screen flex flex-col justify-center px-6 py-2 bg-bg-light dark:bg-bg-dark transition-colors duration-300">
       
-      {/* Encabezado */}
       <div className="flex flex-col items-center mb-12 group">
         <h2 className="text-4xl md:text-5xl font-black text-text-light dark:text-text-dark mb-2 tracking-tighter uppercase">
           Contacto
@@ -77,12 +76,10 @@ const handleSubmit = async (e: React.FormEvent) => {
         </p>
       </div>
 
-      {/* Tarjeta de Contacto */}
       <div className="w-full max-w-2xl mx-auto bg-surface-light dark:bg-surface-dark p-8 md:p-12 rounded-[2rem] shadow-xl border border-transparent hover:border-primary/20 hover:-translate-y-2 transition-all duration-300 group">
         
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Nombre */}
             <div className="relative">
               <input
                 type="text"
@@ -97,7 +94,6 @@ const handleSubmit = async (e: React.FormEvent) => {
               </label>
             </div>
 
-            {/* Email */}
             <div className="relative">
               <input
                 type="email"
@@ -113,7 +109,6 @@ const handleSubmit = async (e: React.FormEvent) => {
             </div>
           </div>
 
-          {/* Motivo */}
           <div className="relative">
             <input
               type="text"
@@ -128,7 +123,6 @@ const handleSubmit = async (e: React.FormEvent) => {
             </label>
           </div>
 
-          {/* Mensaje */}
           <div className="relative">
             <textarea
               name="mensaje"
@@ -143,7 +137,6 @@ const handleSubmit = async (e: React.FormEvent) => {
             </label>
           </div>
 
-          {/* Botón de envío */}
           <div className="flex justify-center pt-4">
            <button
               type="submit"

@@ -7,13 +7,11 @@ export default function Footer() {
 
         <div className="flex flex-col items-center space-y-4 text-center">
           <div className="flex items-center gap-3">
-            {/* LOGO PARA MODO OSCUO */}
             <img 
               src={`${import.meta.env.BASE_URL}images/logos/logo-utn-oscuro.png`} 
               alt="Logo UTN" 
               className="h-10 w-auto block dark:hidden" 
             />
-            {/* LOGO PARA MODO CLARO */}
             <img 
               src={`${import.meta.env.BASE_URL}images/logos/logo-utn-claro.png`}
               alt="Logo UTN" 

@@ -1,4 +1,3 @@
-// Cambiamos la importación a react-icons
 import { FiGithub } from "react-icons/fi";
 
 interface ProyectoItem {

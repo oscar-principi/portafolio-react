@@ -39,13 +39,11 @@ export default function Header() {
         }}
       >
         <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-          {/* Logo - Corregido a text-text-light/dark */}
           <h1 className="text-2xl md:text-3xl font-bold text-text-light dark:text-text-dark tracking-tight transition-colors">
             Oscar Príncipi
           </h1>
 
           <div className="flex items-center gap-4">
-            {/* Desktop Navigation - Corregido a text-text-light/dark */}
             <nav className="hidden lg:flex items-center gap-8 mr-4">
               {navLinks.map((link) => (
                 <a
@@ -58,7 +56,6 @@ export default function Header() {
               ))}
             </nav>
 
-            {/* BOTÓN MODO OSCURO */}
             <button
               onClick={() => setDarkMode(!darkMode)}
               className="p-2.5 rounded-xl bg-surface-light dark:bg-surface-dark text-primary border border-primary/20 hover:scale-110 transition-all active:scale-95 shadow-sm"
@@ -67,7 +64,6 @@ export default function Header() {
               {darkMode ? <Sun size={22} /> : <Moon size={22} />}
             </button>
 
-            {/* Mobile Menu Button */}
             <button
               onClick={() => setDrawerOpen(!drawerOpen)}
               className="lg:hidden p-2 text-primary focus:outline-none"
