@@ -1,7 +1,7 @@
 {
   "name": "frontend",
-  "homepage": "./",
-  "private": true,
+  "homepage": "https://oscarprincipi.com.ar",
+ "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
