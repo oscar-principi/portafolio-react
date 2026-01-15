@@ -1,4 +1,4 @@
-# Portafolio Personal - Proyecto Integrador React + .NET
+# Portafolio Personal - Proyecto React + .NET
 
 Este proyecto es parte de mi portafolio personal:
 - Tiene un frontend con selección de temas, el tipo de tema se almacena en una variable de local storage.
