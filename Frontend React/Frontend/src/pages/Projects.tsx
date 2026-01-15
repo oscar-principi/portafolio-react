@@ -80,11 +80,12 @@ export default function Projects() {
                     Ver completo en GitHub
                   </a>
                 ) : (
-                  <span className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-muted-light text-text-light dark:text-text-dark text-sm font-medium bg-gray-200 dark:bg-gray-700">
+                  <span className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-muted-light text-text-light dark:text-text-dark text-sm font-medium hover:bg-text-light hover:text-white dark:hover:bg-text-dark dark:hover:text-black transition-all duration-300 cursor-not-allowed">
                     <FiGithub size={18} />
                     Proyecto privado
                   </span>
                 )}
+
               </div>
             </div>
           ))}
