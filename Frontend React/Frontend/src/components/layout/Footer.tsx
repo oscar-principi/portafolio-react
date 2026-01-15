@@ -1,4 +1,4 @@
-import { FiInstagram } from "react-icons/fi";
+import { FiInstagram, FiGithub, FiLinkedin } from "react-icons/fi";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -42,26 +42,25 @@ export default function Footer() {
               href="https://linkedin.com/in/oscar-principi/" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="px-6 py-2 rounded-full border border-[#0077b5] text-[#0077b5] text-sm font-medium hover:bg-[#0077b5] hover:text-white transition-all"
+              className="inline-flex items-center gap-2 px-6 py-2 rounded-full border border-[#0077b5] text-[#0077b5] text-sm font-medium hover:bg-[#0077b5] hover:text-white transition-all duration-300"
             >
-              LinkedIn
+              <FiLinkedin size={18} />
             </a>
             <a 
               href="https://github.com/oscar-principi" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="inline-flex items-center gap-2 px-6 py-2 rounded-full border border-muted-light text-text-light dark:text-text-dark text-sm font-medium hover:bg-text-light hover:text-white dark:hover:bg-text-dark dark:hover:text-black transition-all duration-300"
+              className="inline-flex items-center gap-2 px-6 py-2 rounded-full border border-[#333] text-[#333] text-sm font-medium hover:bg-[#333] hover:text-white transition-all duration-300"
             >
-              GitHub
+              <FiGithub size={18} />
             </a>
             <a
-              href="https://instagram.com/oscar.principi" 
+              href="https://instagram.com/tu_usuario" 
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-2 rounded-full border border-[#E4405F] text-[#E4405F] text-sm font-medium hover:bg-[#E4405F] hover:text-white transition-all duration-300"
             >
               <FiInstagram size={18} />
-              Instagram
             </a>
           </div>
         </div>
