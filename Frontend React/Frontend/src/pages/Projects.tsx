@@ -10,15 +10,15 @@ interface ProyectoItem {
 
 export default function Projects() {
   const proyectos: ProyectoItem[] = [
-    { titulo: "Aplicación Web: Ecommerce", descripcion: "Gestión de usuarios, tiendas y productos. Carrito de compra y pagos con MercadoPago.", imageUrl: "images/proyects/ecommerceb2c.png", tags: ["Blazor", ".NET Core", "LINQ", "Entity", "Identity"] },
-    { titulo: "Aplicación Web: Home Banking", descripcion: "Gestión de usuarios, cuentas, transferencias, préstamos y reportes.", imageUrl: "images/proyects/home-banking.png", githubUrl: "https://github.com/oscar-principi/Sistema-de-Home-Banking", tags: ["Java", "JSP", "Servlets", "JDBC", "T-SQL"] },
-    { titulo: "Aplicación Web: Gestión Médica", descripcion: "Gestión de usuarios, turnos y reportes médicos.", imageUrl: "images/proyects/gestion-medica.png", githubUrl: "https://github.com/oscar-principi/Sistema-de-Gesti-n-Medica", tags: ["Bootstrap", ".NET Framework", "T-SQL", "Store Procedure"] },
-    { titulo: "Aplicación Web: Amigo Invisible WhatsApp", descripcion: "Sorteo aleatorio con envío automático por WhatsApp con servicio Twilio.", imageUrl: "images/proyects/amigo-invisible.png", githubUrl: "https://github.com/oscar-principi/Amigo-Invisible-por-Wsp", tags: ["Blazor", ".NET Core", "NoSQL"] },
-    { titulo: "Aplicación Web: Portafolio Personal", descripcion: "Vista de proyectos y formulario de contacto.", imageUrl: "images/proyects/portafolio.png", githubUrl: "https://github.com/oscar-principi/portafolio-react", tags: ["React", "TypeScript",  "tailwind", "Axios", "API REST | .NET Core"] },
-    { titulo: "Aplicación Escritoio: Gestión Veterinaria", descripcion: "Control de clientes, mascotas, turnos, veterinarios y reportes.", imageUrl: "images/proyects/gestion-veterinaria.png", githubUrl: "https://github.com/oscar-principi/PetClinicApp", tags: ["C/C++", "Rlutil", "Archivos"] },
-    { titulo: "Aplicación Escritorio: Gestión de Productos (WPF)", descripcion: "Sistema de escritorio para manejar stock.", imageUrl: "images/proyects/gestor-productos.png", githubUrl: "https://github.com/oscar-principi/Gestion-de-productos-WPF", tags: ["WPF", "EF", "MVC", "T-SQL"] },
+    { titulo: "Aplicación Web: Ecommerce", descripcion: "Aplicación diseñada para gestión de tiendas B2C, donde se puede crear tiendas y productos, crear carritos y pagar de forma digital con mercadopago.", imageUrl: "images/proyects/ecommerceb2c.png", tags: ["Blazor", "MudBlazor", ".NET Core", "LINQ", "Entity Framework", "Identity Framework", "Cookie + JWT"] },
+    { titulo: "Aplicación Web: Home Banking", descripcion: "Aplicación para la gestión de cuentas bancarias, transferencias, préstamos y panel reportes estadísticos para los administradores.", imageUrl: "images/proyects/home-banking.png", githubUrl: "https://github.com/oscar-principi/Sistema-de-Home-Banking", tags: ["Java", "JSP", "Servlets", "JDBC", "T-SQL", "Store Procedure", "Session + Rbac"] },
+    { titulo: "Aplicación Web: Gestión Médica", descripcion: "Aplicación  para la gestión de clínicas médicas, con solicitud de turnos para usuarios y administración para recepcionistas y reportes médicos.", imageUrl: "images/proyects/gestion-medica.png", githubUrl: "https://github.com/oscar-principi/Sistema-de-Gesti-n-Medica", tags: ["Bootstrap", ".NET Framework", "T-SQL", "Store Procedure"] },
+    { titulo: "Aplicación Web: Amigo Invisible WhatsApp", descripcion: "Aplicación para sorteo aleatorio con envío automático por WhatsApp con servicio de la API de Twilio.", imageUrl: "images/proyects/amigo-invisible.png", githubUrl: "https://github.com/oscar-principi/Amigo-Invisible-por-Wsp", tags: ["Blazor", "Tailwind", "API REST | .NET Core", "NoSQL"] },
+    { titulo: "Aplicación Web: Portafolio Personal", descripcion: "Portafolio personal con vistas y descripcion de proyectos y sus tecnologías, y un formulario de contacto para emails.", imageUrl: "images/proyects/portafolio.png", githubUrl: "https://github.com/oscar-principi/portafolio-react", tags: ["React", "TypeScript",  "Tailwind", "Axios", "API REST | .NET Core", "API de Gmail"] },
+    { titulo: "Aplicación Escritoio: Gestión Veterinaria", descripcion: "Aplicacion para gestion de veterinaria, con administración de clientes, mascotas, turnos, veterinarios y reportes estadísticos.", imageUrl: "images/proyects/gestion-veterinaria.png", githubUrl: "https://github.com/oscar-principi/PetClinicApp", tags: ["C/C++", "Rlutil", "Archivos"] },
+    { titulo: "Aplicación Escritorio: Gestión de Productos (WPF)", descripcion: "Aplicación  de escritorio para la gestión y manejo de stock.", imageUrl: "images/proyects/gestor-productos.png", githubUrl: "https://github.com/oscar-principi/Gestion-de-productos-WPF", tags: ["WPF", "Entity Framework", "MVC", "T-SQL", "LINQ"] },
     { titulo: "Aplicación Escritorio: Tetris C++", descripcion: "Recreación del clásico Tetris usando la librería Raylib.", imageUrl: "images/proyects/tetris.png", githubUrl: "https://github.com/oscar-principi/Tetris-C-Raylib", tags: ["C++", "Raylib", "Archivos"] },
-    { titulo: "Sitio Web: Mueblería", descripcion: "Catálogo online y contacto directo mediante redes sociales.", imageUrl: "images/proyects/muebleria.png", githubUrl: "https://github.com/oscar-principi/Muebles-Finochio", tags: ["HTML", "CSS", "Javascript"] },
+    { titulo: "Sitio Web: Mueblería", descripcion: "Sitio web para una mueblería con catálogo online y contacto directo mediante redes sociales.", imageUrl: "images/proyects/muebleria.png", githubUrl: "https://github.com/oscar-principi/Muebles-Finochio", tags: ["HTML", "CSS", "JavaScript"] },
   ];
 
   return (
@@ -69,8 +69,7 @@ export default function Projects() {
                     </span>
                   ))}
                 </div>
-
-                {proyecto.githubUrl && (
+                {proyecto.githubUrl ? (
                   <a 
                     href={proyecto.githubUrl}
                     target="_blank"
@@ -78,8 +77,13 @@ export default function Projects() {
                     className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-muted-light text-text-light dark:text-text-dark text-sm font-medium hover:bg-text-light hover:text-white dark:hover:bg-text-dark dark:hover:text-black transition-all duration-300"
                   >
                     <FiGithub size={18} />
-                    Ver en GitHub
+                    Ver completo en GitHub
                   </a>
+                ) : (
+                  <span className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-muted-light text-text-light dark:text-text-dark text-sm font-medium bg-gray-200 dark:bg-gray-700">
+                    <FiGithub size={18} />
+                    Proyecto privado
+                  </span>
                 )}
               </div>
             </div>
