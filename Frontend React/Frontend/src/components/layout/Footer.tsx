@@ -1,3 +1,5 @@
+import { FiInstagram } from "react-icons/fi";
+
 export default function Footer() {
   const year = new Date().getFullYear();
 
@@ -51,6 +53,15 @@ export default function Footer() {
               className="inline-flex items-center gap-2 px-6 py-2 rounded-full border border-muted-light text-text-light dark:text-text-dark text-sm font-medium hover:bg-text-light hover:text-white dark:hover:bg-text-dark dark:hover:text-black transition-all duration-300"
             >
               GitHub
+            </a>
+            <a
+              href="https://instagram.com/oscar.principi" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-2 rounded-full border border-[#E4405F] text-[#E4405F] text-sm font-medium hover:bg-[#E4405F] hover:text-white transition-all duration-300"
+            >
+              <FiInstagram size={18} />
+              Instagram
             </a>
           </div>
         </div>
