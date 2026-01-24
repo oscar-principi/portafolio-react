@@ -1,0 +1,122 @@
+import { useState, useEffect } from "react"; 
+import { Sun, Moon, Menu, X, Layers, Home, Briefcase, Mail, type LucideIcon } from "lucide-react"; 
+
+export default function Header() {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    if (typeof window !== "undefined") {
+      return (
+        localStorage.getItem("theme") === "dark" ||
+        (!localStorage.getItem("theme") &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      );
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [darkMode]);
+
+  // Tipamos el array para que TS sepa que Icon es un LucideIcon
+  const navLinks: { name: string; href: string; Icon: LucideIcon }[] = [
+    { name: "Home", href: "#home", Icon: Home },
+    { name: "Proyectos", href: "#proyectos", Icon: Briefcase },
+    { name: "Stack", href: "#stack", Icon: Layers },
+    { name: "Contacto", href: "#contacto", Icon: Mail },
+  ];
+
+  return (
+    <>
+      <header
+        className="fixed top-0 left-0 w-full z-50 bg-bg-light/95 dark:bg-bg-dark/95 backdrop-blur-sm transition-all duration-300 border-b border-primary/10"
+        style={{
+          boxShadow: "0 4px 20px rgba(139, 69, 19, 0.15)",
+        }}
+      >
+        <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+          <h1 className="text-2xl md:text-3xl font-bold text-text-light dark:text-text-dark tracking-tight transition-colors">
+            Oscar Príncipi
+          </h1>
+
+          <div className="flex items-center gap-4">
+            <nav className="hidden lg:flex items-center gap-8 mr-4">
+              {navLinks.map(({ name, href, Icon }) => (
+                <a
+                  key={name}
+                  href={href}
+                  className="text-base font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary transition-colors flex items-center gap-2 group"
+                >
+                  <Icon size={18} className="text-primary/70 group-hover:text-primary transition-colors" />
+                  {name}
+                </a>
+              ))}
+            </nav>
+
+            <button
+              onClick={() => setDarkMode(!darkMode)}
+              className="p-2.5 rounded-xl bg-surface-light dark:bg-surface-dark text-primary border border-primary/20 hover:scale-110 transition-all active:scale-95 shadow-sm"
+              aria-label="Cambiar tema"
+            >
+              {darkMode ? <Sun size={22} /> : <Moon size={22} />}
+            </button>
+
+            <button
+              onClick={() => setDrawerOpen(!drawerOpen)}
+              className="lg:hidden p-2 text-primary focus:outline-none"
+            >
+              <Menu size={32} strokeWidth={2.5} />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile Drawer */}
+      <div
+        className={`fixed inset-0 z-[60] lg:hidden transition-opacity duration-300 ${
+          drawerOpen ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
+      >
+        <div
+          className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+          onClick={() => setDrawerOpen(false)}
+        />
+
+        <aside
+          className={`absolute top-0 right-0 h-full w-72 bg-bg-light dark:bg-bg-dark shadow-2xl p-8 transform transition-transform duration-300 ease-in-out ${
+            drawerOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <div className="flex justify-end mb-8">
+            <button
+              onClick={() => setDrawerOpen(false)}
+              className="text-primary"
+            >
+              <X size={32} />
+            </button>
+          </div>
+
+          <nav className="flex flex-col gap-8">
+            {navLinks.map(({ name, href, Icon }) => (
+              <a
+                key={name}
+                href={href}
+                onClick={() => setDrawerOpen(false)}
+                className="text-2xl font-bold text-text-light dark:text-text-dark hover:text-primary transition-all flex items-center gap-4"
+              >
+                <Icon size={28} className="text-primary" />
+                {name}
+              </a>
+            ))}
+          </nav>
+        </aside>
+      </div>
+    </>
+  );
+}
