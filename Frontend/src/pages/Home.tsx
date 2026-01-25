@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <section
       id="home"
-      className="min-h-screen px-6 flex items-center bg-bg-light dark:bg-bg-dark transition-colors duration-300" 
+      className="min-h-screen px-6 flex items-center bg-background-light dark:bg-background-dark transition-colors duration-300" 
     >
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-15 items-center">
         
