@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, type MouseEvent } from "react";
 import { 
   SiReact, SiTailwindcss, SiDocker, SiMysql,
   SiCplusplus, SiDotnet, SiBootstrap, SiTypescript, 
@@ -23,6 +23,48 @@ interface TechGroup {
   categoria: string;
   icon: React.ReactNode;
   items: TechItem[];
+}
+
+// --- Componente de Tarjeta con Spotlight ---
+function TechCard({ tech }: { tech: TechItem }) {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [opacity, setOpacity] = useState(0);
+
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    const { left, top } = e.currentTarget.getBoundingClientRect();
+    setMousePos({ x: e.clientX - left, y: e.clientY - top });
+  };
+
+  return (
+    <div 
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setOpacity(1)}
+      onMouseLeave={() => setOpacity(0)}
+      className="group relative bg-surface-light dark:bg-surface-dark rounded-3xl p-6 border-2 border-transparent shadow-lg hover:border-primary hover:shadow-primary/10 hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center justify-center overflow-hidden"
+    >
+      {/* Efecto Spotlight (Marrón #8B4513) */}
+      <div
+        className="pointer-events-none absolute -inset-px transition duration-300 z-0"
+        style={{
+          opacity,
+          background: `radial-gradient(250px circle at ${mousePos.x}px ${mousePos.y}px, rgba(139, 69, 19, 0.15), transparent 80%)`,
+        }}
+      />
+
+      {/* Contenido */}
+      <div className="relative z-10 flex flex-col items-center">
+        <div className={`text-5xl mb-4 ${tech.color} transition-transform duration-500 group-hover:scale-110`}>
+          {tech.icon}
+        </div>
+        <span className="text-md font-bold text-text-light dark:text-text-dark block">
+          {tech.nombre}
+        </span>
+        <span className="text-[11px] text-primary font-bold uppercase tracking-wider mt-2 px-3 py-1 rounded-full bg-primary/5 border border-primary/20">
+          {tech.subtitulo}
+        </span>
+      </div>
+    </div>
+  );
 }
 
 export default function TechStack() {
@@ -114,20 +156,7 @@ export default function TechStack() {
 
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
                 {grupo.items.map((tech, index) => (
-                  <div 
-                    key={index}
-                    className="group bg-surface-light dark:bg-surface-dark rounded-3xl p-6 border-2 border-transparent shadow-lg hover:border-primary hover:shadow-primary/10 hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center justify-center"
-                  >
-                    <div className={`text-5xl mb-4 ${tech.color} transition-transform duration-500 group-hover:scale-110`}>
-                      {tech.icon}
-                    </div>
-                    <span className="text-md font-bold text-text-light dark:text-text-dark block">
-                      {tech.nombre}
-                    </span>
-                    <span className="text-[11px] text-primary font-bold uppercase tracking-wider mt-2 px-3 py-1 rounded-full bg-primary/5 border border-primary/20">
-                      {tech.subtitulo}
-                    </span>
-                  </div>
+                  <TechCard key={index} tech={tech} />
                 ))}
               </div>
             </div>

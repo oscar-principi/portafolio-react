@@ -50,7 +50,6 @@ export default function Contact() {
   };
 
   return (
-    // CAMBIO: Se usa bg-background-light y py-20 para matchear con TechStack
     <section id="contacto" className="py-20 px-6 bg-background-light dark:bg-background-dark scroll-mt-10 transition-all duration-300">
       <div className="max-w-6xl mx-auto">
         

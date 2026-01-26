@@ -1,7 +1,15 @@
 import Typewriter from 'typewriter-effect';
+import { useState, type MouseEvent } from 'react';
 import { FaCalendarAlt, FaGraduationCap } from 'react-icons/fa'; 
 
 export default function Home() {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [opacity, setOpacity] = useState(0);
+
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    const { left, top } = e.currentTarget.getBoundingClientRect();
+    setMousePos({ x: e.clientX - left, y: e.clientY - top });
+  };
 
   return (
     <section
@@ -53,9 +61,23 @@ export default function Home() {
             </h1>
           </header>
 
-          <div className="bg-surface-light dark:bg-surface-dark p-8 rounded-3xl border border-muted-light/10 dark:border-white/5 shadow-xl transition-all duration-300">
-            <div className="space-y-8">
-              
+          {/* CARD CON SPOTLIGHT */}
+          <div 
+            onMouseMove={handleMouseMove}
+            onMouseEnter={() => setOpacity(1)}
+            onMouseLeave={() => setOpacity(0)}
+            className="relative bg-surface-light dark:bg-surface-dark p-8 rounded-3xl border border-muted-light/10 dark:border-white/5 shadow-xl transition-all duration-300 overflow-hidden"
+          >
+            {/* Efecto de luz (Marrón) */}
+            <div
+              className="pointer-events-none absolute -inset-px transition duration-300 z-0"
+              style={{
+                opacity,
+                background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(139, 69, 19, 0.15), transparent 40%)`,
+              }}
+            />
+
+            <div className="relative z-10 space-y-8">
               <div className="relative">
                 <h3 className="font-bold text-sm uppercase tracking-widest text-primary mb-6 flex items-center justify-center md:justify-start gap-2">
                   <FaGraduationCap className="text-xl" />
@@ -100,7 +122,6 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
