@@ -59,7 +59,7 @@ export default function Home() {
               <div className="relative">
                 <h3 className="font-bold text-sm uppercase tracking-widest text-primary mb-6 flex items-center justify-center md:justify-start gap-2">
                   <FaGraduationCap className="text-xl" />
-                  Trayectoria Académicaaaa
+                  Trayectoria Académica
                 </h3>
                 
                 <div className="space-y-6">
