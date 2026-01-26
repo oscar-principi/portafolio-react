@@ -3,10 +3,10 @@ import {
   SiReact, SiTailwindcss, SiDocker, SiMysql,
   SiCplusplus, SiDotnet, SiBootstrap, SiTypescript, 
   SiEclipseide, SiSonarqube, SiOwasp, SiMongodb,
-  SiBlazor , SiSwagger
+  SiBlazor, SiSwagger, SiGithubactions 
 } from "react-icons/si";
 import { DiMsqlServer, DiVisualstudio } from "react-icons/di"; 
-import { VscCode, VscAzure } from "react-icons/vsc"; 
+import { VscCode, VscAzure, VscAzureDevops } from "react-icons/vsc"; 
 import { 
   FaJava, FaCode, FaLaptopCode, 
   FaTerminal, FaCloud, FaShieldAlt, FaDatabase
@@ -27,7 +27,6 @@ interface TechGroup {
 
 export default function TechStack() {
   const grupos: TechGroup[] = [
-    // ... (tus datos de grupos se mantienen iguales)
     {
       categoria: "Frontend",
       icon: <FaLaptopCode className="text-primary" />,
@@ -62,7 +61,9 @@ export default function TechStack() {
       categoria: "Cloud & DevOps",
       icon: <FaCloud className="text-primary" />,
       items: [
-        { nombre: "Azure", subtitulo: "Cloud", icon: <VscAzure />, color: "text-[#0078d4]" },
+        { nombre: "Azure", subtitulo: "Cloud Services", icon: <VscAzure />, color: "text-[#0078d4]" },
+        { nombre: "Azure DevOps", subtitulo: "CI / CD Pipelines", icon: <VscAzureDevops />, color: "text-[#0078d4]" },
+        { nombre: "GitHub Actions", subtitulo: "Automation", icon: <SiGithubactions />, color: "text-[#2088ff]" },
         { nombre: "Docker", subtitulo: "Contenedores", icon: <SiDocker />, color: "text-[#2496ed]" },
       ]
     },
@@ -95,7 +96,7 @@ export default function TechStack() {
           </h2>
           <div className="w-12 h-1.5 bg-primary rounded-full mt-2 transition-all duration-300 group-hover:w-24"></div>
           <p className="text-muted-light dark:text-muted-dark mt-4 text-center max-w-lg">
-            Mi stack técnico para desarrollar soluciones fullstack.
+            Mi stack técnico para desarrollar soluciones fullstack con enfoque en automatización y calidad.
           </p>
         </div>
 
