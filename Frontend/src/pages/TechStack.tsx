@@ -3,7 +3,7 @@ import {
   SiReact, SiTailwindcss, SiDocker, SiMysql,
   SiCplusplus, SiDotnet, SiBootstrap, SiTypescript, 
   SiEclipseide, SiSonarqube, SiOwasp, SiMongodb,
-  SiBlazor 
+  SiBlazor , SiSwagger
 } from "react-icons/si";
 import { DiMsqlServer, DiVisualstudio } from "react-icons/di"; 
 import { VscCode, VscAzure } from "react-icons/vsc"; 
@@ -45,7 +45,8 @@ export default function TechStack() {
       items: [
         { nombre: ".NET Core", subtitulo: "C#", icon: <SiDotnet />, color: "text-[#512bd4]" },
         { nombre: "Java", subtitulo: "JSP / Servlets", icon: <FaJava />, color: "text-[#ed8b00]" },
-        { nombre: "C / C++", subtitulo: "Estructurado / POO", icon: <SiCplusplus />, color: "text-[#00599c]" }
+        { nombre: "C / C++", subtitulo: "Estructurado / POO", icon: <SiCplusplus />, color: "text-[#00599c]" },
+        { nombre: "Swagger", subtitulo: "API Documentation", icon: <SiSwagger />, color: "text-[#85ea2d]" }
       ]
     },
     {
