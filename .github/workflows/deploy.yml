@@ -29,17 +29,20 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: Frontend
 
       - name: Build project
         run: npm run build
+        working-directory: Frontend
 
       - name: Add CNAME for custom domain
         run: echo "oscarprincipi.com.ar" > dist/CNAME
+        working-directory: Frontend
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: Frontend/dist
 
   deploy:
     needs: build
