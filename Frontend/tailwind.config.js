@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+// tailwind.config.js
 export default {
   darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -17,6 +17,12 @@ export default {
           dark: "#5C2A0C",   // marrón oscuro
         },
       },
+      keyframes: {
+        'spin-slow': { from: { transform: 'rotate(0deg)' }, to: { transform: 'rotate(360deg)' } }
+      },
+      animation: {
+        'spin-slow': 'spin-slow 4s linear infinite'
+      }
     },
   },
   plugins: [],
