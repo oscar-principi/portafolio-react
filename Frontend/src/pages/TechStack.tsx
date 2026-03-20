@@ -1,15 +1,15 @@
 import React, { useState, type MouseEvent } from "react";
-import { 
+import {
   SiReact, SiTailwindcss, SiDocker, SiMysql,
-  SiCplusplus, SiDotnet, SiBootstrap, SiTypescript, 
-  SiEclipseide, SiSonarqube, SiOwasp, SiMongodb,
-  SiBlazor, SiSwagger, SiGithubactions 
+  SiCplusplus, SiDotnet, SiBootstrap, SiTypescript,
+  SiEclipseide, SiMongodb,
+  SiBlazor, SiSwagger, SiGithubactions
 } from "react-icons/si";
 import { DiMsqlServer, DiVisualstudio } from "react-icons/di"; 
 import { VscCode, VscAzure, VscAzureDevops } from "react-icons/vsc"; 
-import { 
-  FaJava, FaCode, FaLaptopCode, 
-  FaTerminal, FaCloud, FaShieldAlt, FaDatabase
+import {
+  FaJava, FaCode, FaLaptopCode,
+  FaTerminal, FaCloud, FaDatabase
 } from "react-icons/fa";
 
 interface TechItem {
@@ -107,14 +107,6 @@ export default function TechStack() {
         { nombre: "Azure DevOps", subtitulo: "CI / CD Pipelines", icon: <VscAzureDevops />, color: "text-[#0078d4]" },
         { nombre: "GitHub Actions", subtitulo: "Automation", icon: <SiGithubactions />, color: "text-[#2088ff]" },
         { nombre: "Docker", subtitulo: "Contenedores", icon: <SiDocker />, color: "text-[#2496ed]" },
-      ]
-    },
-    {
-      categoria: "Calidad & Seguridad",
-      icon: <FaShieldAlt className="text-primary" />,
-      items: [
-        { nombre: "SonarQube", subtitulo: "Análisis Estático", icon: <SiSonarqube />, color: "text-[#4E9BCD]" },
-        { nombre: "OWASP ZAP", subtitulo: "Pentesting QA", icon: <SiOwasp />, color: "text-[#000000] dark:text-white" },
       ]
     },
     {

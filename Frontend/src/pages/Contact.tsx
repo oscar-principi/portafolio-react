@@ -1,30 +1,34 @@
 import { toast } from "sonner";
-import React, { useState } from "react";
+import { useState } from "react";
+import { z } from "zod";
 import { Send, Loader2 } from "lucide-react";
-import { ContactApi, type ContactRequest } from "../api/ContactApi";
+import { ContactApi } from "../api/ContactApi";
+
+const contactSchema = z.object({
+  name: z.string().min(1, "El nombre es requerido"),
+  email: z.string().email("El email no es válido"),
+  motivo: z.string().min(1, "El motivo es requerido"),
+  mensaje: z.string().min(1, "El mensaje es requerido"),
+});
+
+type ContactForm = z.infer<typeof contactSchema>;
 
 export default function Contact() {
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState<ContactRequest>({
+  const [cooldown, setCooldown] = useState(false);
+  const [form, setForm] = useState<ContactForm>({
     name: "",
     email: "",
     motivo: "",
     mensaje: "",
   });
 
-  const isEmailValid = (email: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
-
-  const isFormValid =
-    form.name.trim() !== "" &&
-    isEmailValid(form.email) &&
-    form.motivo.trim() !== "" &&
-    form.mensaje.trim() !== "";
+  const result = contactSchema.safeParse(form);
+  const isFormValid = result.success;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-
-  const [cooldown, setCooldown] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,7 +45,7 @@ export default function Contact() {
       } else {
         toast.error("Error: " + response.message);
       }
-    } catch (error: any) {
+    } catch {
       toast.error("Ocurrió un error inesperado.");
     } finally {
       setLoading(false);
@@ -52,8 +56,7 @@ export default function Contact() {
   return (
     <section id="contacto" className="py-20 px-6 bg-background-light dark:bg-background-dark scroll-mt-10 transition-all duration-300">
       <div className="max-w-6xl mx-auto">
-        
-        {/* HEADER: Copiado exacto de TechStack para consistencia */}
+
         <div className="flex flex-col items-center mb-16 group">
           <h2 className="text-4xl md:text-5xl font-black text-text-light dark:text-text-dark tracking-tighter uppercase">
             Contacto
@@ -64,10 +67,8 @@ export default function Contact() {
           </p>
         </div>
 
-        {/* CARD: Estilo de bordes y sombras igual a los items del stack */}
         <div className="max-w-3xl mx-auto bg-surface-light dark:bg-surface-dark p-8 md:p-12 rounded-[2.5rem] border-2 border-transparent shadow-lg hover:border-primary hover:shadow-primary/10 transition-all duration-300">
-          
-          {/* INDICADOR DE DISPONIBILIDAD */}
+
           <div className="flex items-center justify-center gap-2 mb-10">
             <span className="relative flex h-3 w-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
@@ -143,8 +144,8 @@ export default function Contact() {
                 disabled={!isFormValid || loading}
                 className={`
                   relative w-full md:w-72 py-4 font-black uppercase tracking-widest rounded-full overflow-hidden shadow-lg transition-all active:scale-95 flex items-center justify-center gap-3
-                  ${!isFormValid || loading 
-                    ? "bg-gray-300 dark:bg-gray-800 text-gray-500 cursor-not-allowed" 
+                  ${!isFormValid || loading
+                    ? "bg-gray-300 dark:bg-gray-800 text-gray-500 cursor-not-allowed"
                     : "bg-primary text-white hover:-translate-y-1 hover:shadow-primary/30"}
                 `}
               >
