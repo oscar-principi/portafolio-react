@@ -81,22 +81,10 @@ export default function Home() {
               <div className="relative">
                 <h3 className="font-bold text-sm uppercase tracking-widest text-primary mb-6 flex items-center justify-center md:justify-start gap-2">
                   <FaGraduationCap className="text-xl" />
-                  Trayectoria Académica
+                  Formación
                 </h3>
                 
                 <div className="space-y-6">
-                  {/* Ingeniería en Sistemas (Actual) */}
-                  <div className="flex flex-col items-center md:items-start border-l-2 border-primary md:pl-4">
-                    <p className="text-text-light dark:text-text-dark text-lg leading-tight font-bold">
-                      Ingeniería en Sistemas de Información
-                    </p>
-                    <span className="text-muted-light dark:text-muted-dark font-medium">UTN FRD</span>
-                    <div className="mt-2 flex items-center gap-2 px-3 py-1 bg-primary/10 text-primary rounded-full text-[10px] font-black uppercase tracking-widest">
-                      <FaCalendarAlt />
-                      <span>2026 — Actualidad</span>
-                    </div>
-                  </div>
-
                   {/* Tecnicatura en Programación */}
                   <div className="flex flex-col items-center md:items-start border-l-2 border-primary/40 md:pl-4">
                     <p className="text-text-light dark:text-text-dark text-lg leading-tight font-bold">

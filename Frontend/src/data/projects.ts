@@ -55,6 +55,12 @@ export const proyectos: ProyectoItem[] = [
     tags: ["React", "TypeScript", "Tailwind", "Axios", "API REST | .NET Core", "API de Gmail"],
   },
   {
+    titulo: "Aplicación Escritorio: Computación JMD",
+    descripcion: "Sistema de gestión a medida para taller de reparación de equipos. Incluye envío de presupuestos por WhatsApp Web, comprobantes PDF (reparación, garantía), patrón de desbloqueo gráfico, backup automático diario.",
+    imageUrl: "images/proyects/computacion-jmd.png",
+    tags: ["WPF", "C#", ".NET 10", "MVVM", "EF Core", "SQL Server", "QuestPDF", "Serilog", "Inno Setup"],
+  },
+  {
     titulo: "Aplicación Escritorio: Gestión Veterinaria",
     descripcion: "Aplicacion para gestión de veterinaria, con administración de clientes, mascotas, turnos, veterinarios y reportes estadísticos.",
     imageUrl: "images/proyects/gestion-veterinaria.png",
