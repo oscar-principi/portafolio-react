@@ -9,7 +9,7 @@ import { DiMsqlServer, DiVisualstudio } from "react-icons/di";
 import { VscCode, VscAzure, VscAzureDevops } from "react-icons/vsc"; 
 import {
   FaJava, FaCode, FaLaptopCode,
-  FaTerminal, FaCloud, FaDatabase
+  FaTerminal, FaCloud, FaDatabase, FaRobot
 } from "react-icons/fa";
 
 interface TechItem {
@@ -107,6 +107,13 @@ export default function TechStack() {
         { nombre: "Azure DevOps", subtitulo: "CI / CD Pipelines", icon: <VscAzureDevops />, color: "text-[#0078d4]" },
         { nombre: "GitHub Actions", subtitulo: "Automation", icon: <SiGithubactions />, color: "text-[#2088ff]" },
         { nombre: "Docker", subtitulo: "Contenedores", icon: <SiDocker />, color: "text-[#2496ed]" },
+      ]
+    },
+    {
+      categoria: "IA & Productividad",
+      icon: <FaRobot className="text-primary" />,
+      items: [
+        { nombre: "Claude Code", subtitulo: "IA Agente CLI", icon: <FaRobot />, color: "text-[#d4a574]" },
       ]
     },
     {
