@@ -2,8 +2,6 @@ import { Toaster } from 'sonner';
 import { MainLayout } from "./layouts/MainLayout";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
-import Contact from "./pages/Contact"; 
-import TechStack from './pages/TechStack';
 
 function App() {
   return (
@@ -11,8 +9,6 @@ function App() {
       <Toaster position="bottom-center" richColors />
       <Home />
       <Projects />
-      <TechStack />
-      <Contact />
     </MainLayout>
   );
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"; 
-import { Sun, Moon, Menu, X, Layers, Home, Briefcase, Mail, type LucideIcon } from "lucide-react"; 
+import { Sun, Moon, Menu, X, Home, Briefcase, type LucideIcon } from "lucide-react";
 
 export default function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -22,58 +22,64 @@ export default function Header() {
       document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
     }
+
+    // El favicon (pestaña del navegador) sigue el tema, igual que la foto del hero
+    const favicon = document.getElementById("favicon");
+    if (favicon) {
+      const imagen = darkMode ? "perfil-marron" : "perfil-blanco";
+      favicon.setAttribute(
+        "href",
+        `${import.meta.env.BASE_URL}images/perfil/${imagen}.png`
+      );
+    }
   }, [darkMode]);
 
   // Tipamos el array para que TS sepa que Icon es un LucideIcon
   const navLinks: { name: string; href: string; Icon: LucideIcon }[] = [
     { name: "Home", href: "#home", Icon: Home },
     { name: "Proyectos", href: "#proyectos", Icon: Briefcase },
-    { name: "Stack", href: "#stack", Icon: Layers },
-    { name: "Contacto", href: "#contacto", Icon: Mail },
   ];
 
   return (
     <>
-      <header
-        className="fixed top-0 left-0 w-full z-50 bg-bg-light/95 dark:bg-bg-dark/95 backdrop-blur-sm transition-all duration-300 border-b border-primary/10"
-        style={{
-          boxShadow: "0 4px 20px rgba(139, 69, 19, 0.15)",
-        }}
-      >
-        <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-          <h1 className="text-2xl md:text-3xl font-bold text-text-light dark:text-text-dark tracking-tight transition-colors">
+      <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 px-4 w-full max-w-fit">
+        <div
+          className="flex items-center gap-2 sm:gap-4 pl-5 pr-3 h-14 rounded-full bg-bg-light/60 dark:bg-bg-dark/50 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-lg shadow-black/5 transition-all duration-300"
+        >
+          <h1 className="text-lg font-bold text-text-light dark:text-text-dark tracking-tight whitespace-nowrap">
             Oscar Príncipi
           </h1>
 
-          <div className="flex items-center gap-4">
-            <nav className="hidden lg:flex items-center gap-8 mr-4">
-              {navLinks.map(({ name, href, Icon }) => (
-                <a
-                  key={name}
-                  href={href}
-                  className="text-base font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary transition-colors flex items-center gap-2 group"
-                >
-                  <Icon size={18} className="text-primary/70 group-hover:text-primary transition-colors" />
-                  {name}
-                </a>
-              ))}
-            </nav>
+          <div className="hidden lg:block w-px h-6 bg-primary/20" />
 
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="p-2.5 rounded-xl bg-surface-light dark:bg-surface-dark text-primary border border-primary/20 hover:scale-110 transition-all active:scale-95 shadow-sm"
-              aria-label="Cambiar tema"
-            >
-              {darkMode ? <Sun size={22} /> : <Moon size={22} />}
-            </button>
+          <nav className="hidden lg:flex items-center gap-1">
+            {navLinks.map(({ name, href, Icon }) => (
+              <a
+                key={name}
+                href={href}
+                className="text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary transition-colors flex items-center gap-2 px-3 py-2 rounded-full hover:bg-primary/10 group"
+              >
+                <Icon size={16} className="text-primary/70 group-hover:text-primary transition-colors" />
+                {name}
+              </a>
+            ))}
+          </nav>
 
-            <button
-              onClick={() => setDrawerOpen(!drawerOpen)}
-              className="lg:hidden p-2 text-primary focus:outline-none"
-            >
-              <Menu size={32} strokeWidth={2.5} />
-            </button>
-          </div>
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            className="p-2 rounded-full text-primary hover:bg-primary/10 transition-all active:scale-95"
+            aria-label="Cambiar tema"
+          >
+            {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
+
+          <button
+            onClick={() => setDrawerOpen(!drawerOpen)}
+            className="lg:hidden p-2 text-primary rounded-full hover:bg-primary/10 transition-all focus:outline-none"
+            aria-label="Abrir menú"
+          >
+            <Menu size={24} strokeWidth={2.5} />
+          </button>
         </div>
       </header>
 

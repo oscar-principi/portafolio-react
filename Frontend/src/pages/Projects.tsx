@@ -1,100 +1,149 @@
-import { FiGithub } from "react-icons/fi";
+import { useState, useEffect, useCallback } from "react";
+import { FiGithub, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { proyectos } from "../data/projects";
 
 export default function Projects() {
-  return (
-    <section id="proyectos" className="py-20 px-6 bg-background-light dark:bg-background-dark scroll-mt-10">
-      <style>{`
-        @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        .animate-spin-slow {
-          animation: spin-slow 4s linear infinite;
-        }
-      `}</style>
+  const [current, setCurrent] = useState(0);
+  const total = proyectos.length;
 
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col items-center mb-16 group">
+  const goTo = useCallback(
+    (index: number) => {
+      setCurrent((index + total) % total);
+    },
+    [total]
+  );
+
+  const next = useCallback(() => goTo(current + 1), [current, goTo]);
+  const prev = useCallback(() => goTo(current - 1), [current, goTo]);
+
+  // Navegación con teclado
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [next, prev]);
+
+  return (
+    <section
+      id="proyectos"
+      className="py-24 px-6 scroll-mt-10"
+    >
+      <div className="max-w-5xl mx-auto">
+        {/* Encabezado */}
+        <div className="flex flex-col items-center mb-12 group">
           <h2 className="text-4xl md:text-5xl font-black text-text-light dark:text-text-dark tracking-tighter uppercase">
             Proyectos
           </h2>
           <div className="w-12 h-1.5 bg-primary rounded-full mt-2 transition-all duration-300 group-hover:w-24"></div>
-
           <p className="text-muted-light dark:text-muted-dark mt-4 text-center max-w-lg">
-            Explora mis trabajos y desarrollos más recientes.
+            Soluciones reales que resuelven problemas concretos.
           </p>
-          <div className="mt-6 flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20">
-            <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
-            <span className="text-sm font-bold text-primary uppercase tracking-widest">
-              {proyectos.length} Proyectos realizados
-            </span>
-          </div>
+
+          {/* Contador fijo — no se mueve con las tarjetas */}
+          <span className="mt-6 text-xs font-black uppercase tracking-widest text-primary">
+            Proyecto {String(current + 1).padStart(2, "0")} / {total}
+          </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {proyectos.map((proyecto, index) => (
+        {/* Carrusel */}
+        <div className="relative">
+          {/* Track */}
+          <div className="overflow-hidden rounded-4xl">
             <div
-              key={index}
-              className="group relative p-0.5 overflow-hidden rounded-4xl transition-all duration-300 hover:-translate-y-2 flex shadow-lg hover:shadow-primary/20"
+              className="flex transition-transform duration-500 ease-out"
+              style={{ transform: `translateX(-${current * 100}%)` }}
             >
-              {/* BORDE DINÁMICO (GIRATORIO): Se activa en hover */}
-              <div className="absolute inset-[-1000%] animate-spin-slow bg-[conic-gradient(from_90deg_at_50%_50%,#78350f_0%,#d97706_50%,#78350f_100%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {proyectos.map((proyecto, index) => (
+                <div key={index} className="w-full shrink-0 px-1">
+                  <div className="grid md:grid-cols-2 gap-8 items-center bg-surface-light dark:bg-surface-dark rounded-4xl p-6 md:p-10 border border-muted-light/10 dark:border-white/5 shadow-xl">
+                    {/* Imagen */}
+                    <div className="w-full h-56 md:h-72 overflow-hidden rounded-3xl bg-white dark:bg-background-dark flex items-center justify-center border border-gray-100 dark:border-gray-800">
+                      <img
+                        src={`${import.meta.env.BASE_URL}${proyecto.imageUrl}`}
+                        alt={proyecto.titulo}
+                        loading="lazy"
+                        className="w-full h-full object-contain p-3"
+                      />
+                    </div>
 
-              {/* CONTENIDO DE LA TARJETA */}
-              <div className="relative w-full bg-surface-light dark:bg-surface-dark rounded-[calc(2rem-2px)] p-6 flex flex-col h-full z-10">
+                    {/* Contenido */}
+                    <div className="flex flex-col text-center md:text-left">
+                      <h3 className="text-2xl md:text-3xl font-bold text-text-light dark:text-text-dark mb-4">
+                        {proyecto.titulo}
+                      </h3>
+                      <p className="text-base text-muted-light dark:text-muted-dark leading-relaxed mb-6">
+                        {proyecto.descripcion}
+                      </p>
 
-                <div className="w-full h-56 md:h-64 overflow-hidden rounded-2xl bg-white dark:bg-background-dark flex items-center justify-center mb-6 border border-gray-100 dark:border-gray-800">
-                  <img
-                    src={`${import.meta.env.BASE_URL}${proyecto.imageUrl}`}
-                    alt={proyecto.titulo}
-                    loading="lazy"
-                    className="w-full h-full object-contain p-2 transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
+                      <div className="flex flex-wrap gap-2 justify-center md:justify-start mb-6">
+                        {proyecto.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full border border-primary/30 text-primary bg-primary/5"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
 
-                <div className="text-center md:text-left grow">
-                  <h3 className="text-xl font-bold text-text-light dark:text-text-dark mb-2">
-                    {proyecto.titulo}
-                  </h3>
-                  <p className="text-sm text-muted-light dark:text-muted-dark leading-relaxed mb-4">
-                    {proyecto.descripcion}
-                  </p>
-                </div>
-
-                <div className="mt-4 pt-4 border-t border-muted-light/10 space-y-4">
-                  <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                    {proyecto.tags.map(tag => (
-                      <span
-                        key={tag}
-                        className="px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full border border-primary/30 text-primary bg-primary/5"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                      <div className="flex justify-center md:justify-start">
+                        {proyecto.githubUrl ? (
+                          <a
+                            href={proyecto.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-muted-light text-text-light dark:text-text-dark text-sm font-medium hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
+                          >
+                            <FiGithub size={18} />
+                            Ver completo en GitHub
+                          </a>
+                        ) : (
+                          <span className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-muted-light/30 text-muted-light/50 dark:text-muted-dark/50 text-sm font-medium cursor-not-allowed">
+                            <FiGithub size={18} />
+                            Proyecto privado
+                          </span>
+                        )}
+                      </div>
+                    </div>
                   </div>
-
-                  <div className="flex justify-center md:justify-start">
-                    {proyecto.githubUrl ? (
-                      <a
-                        href={proyecto.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-muted-light text-text-light dark:text-text-dark text-sm font-medium hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
-                      >
-                        <FiGithub size={18} />
-                        Ver completo en GitHub
-                      </a>
-                    ) : (
-                      <span className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-muted-light/30 text-muted-light/50 dark:text-muted-dark/50 text-sm font-medium cursor-not-allowed">
-                        <FiGithub size={18} />
-                        Proyecto privado
-                      </span>
-                    )}
-                  </div>
                 </div>
-              </div>
+              ))}
             </div>
+          </div>
+
+          {/* Flechas */}
+          <button
+            onClick={prev}
+            aria-label="Proyecto anterior"
+            className="absolute top-1/2 -translate-y-1/2 -left-3 md:-left-6 p-3 rounded-full bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-md border border-primary/20 text-primary shadow-lg hover:bg-primary hover:text-white hover:scale-110 transition-all active:scale-95 z-10"
+          >
+            <FiChevronLeft size={24} />
+          </button>
+          <button
+            onClick={next}
+            aria-label="Proyecto siguiente"
+            className="absolute top-1/2 -translate-y-1/2 -right-3 md:-right-6 p-3 rounded-full bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-md border border-primary/20 text-primary shadow-lg hover:bg-primary hover:text-white hover:scale-110 transition-all active:scale-95 z-10"
+          >
+            <FiChevronRight size={24} />
+          </button>
+        </div>
+
+        {/* Indicadores */}
+        <div className="flex justify-center items-center gap-2 mt-8 flex-wrap">
+          {proyectos.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goTo(index)}
+              aria-label={`Ir al proyecto ${index + 1}`}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                index === current
+                  ? "w-8 bg-primary"
+                  : "w-2 bg-primary/25 hover:bg-primary/50"
+              }`}
+            />
           ))}
         </div>
       </div>

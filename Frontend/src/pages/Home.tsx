@@ -1,10 +1,9 @@
-import Typewriter from 'typewriter-effect';
 import { useState, type MouseEvent } from 'react';
-import { FaCalendarAlt, FaGraduationCap } from 'react-icons/fa'; 
+import { FaArrowRight } from 'react-icons/fa';
 
 export default function Home() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [opacity, setOpacity] = useState(0);
+  const [hoveredCard, setHoveredCard] = useState(false);
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     const { left, top } = e.currentTarget.getBoundingClientRect();
@@ -14,103 +13,115 @@ export default function Home() {
   return (
     <section
       id="home"
-      className="min-h-screen px-6 flex items-center bg-background-light dark:bg-background-dark transition-colors duration-300" 
+      className="min-h-screen px-6 flex items-center justify-center transition-colors duration-300"
     >
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-15 items-center">
-        
-        {/* Lado de la Imagen */}
-        <div className="flex justify-center order-2 md:order-1">
+      <style>{`
+        @keyframes slideUpIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes lineGrow {
+          from {
+            width: 0;
+          }
+          to {
+            width: 100%;
+          }
+        }
+
+        .animate-slide-up-1 {
+          animation: slideUpIn 0.6s ease-out 0.1s both;
+        }
+
+        .animate-slide-up-2 {
+          animation: slideUpIn 0.6s ease-out 0.2s both;
+        }
+
+        .animate-slide-up-3 {
+          animation: slideUpIn 0.6s ease-out 0.3s both;
+        }
+
+        .animate-slide-up-4 {
+          animation: slideUpIn 0.6s ease-out 0.4s both;
+        }
+
+        .line-accent {
+          animation: lineGrow 0.8s ease-out 0.25s both;
+          height: 3px;
+          background: linear-gradient(90deg, #8B4513, rgba(139, 69, 19, 0));
+        }
+      `}</style>
+
+      <div className="max-w-2xl w-full text-center space-y-12">
+        {/* Imagen de perfil pequeña */}
+        <div className="animate-slide-up-1 flex justify-center">
           <div className="relative group">
-            <div className="absolute -inset-4 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/20 transition duration-500"></div>
-            
-            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white dark:border-surface-dark shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
+            <div className="absolute -inset-3 bg-amber-700/5 dark:bg-amber-600/5 rounded-full blur-xl group-hover:bg-amber-700/10 dark:group-hover:bg-amber-600/10 transition-all duration-500"></div>
+
+            <div className="relative w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-2 border-amber-700/30 dark:border-amber-600/40 shadow-lg transition-transform duration-500 group-hover:scale-105">
               <img
                 src={`${import.meta.env.BASE_URL}images/perfil/perfil-blanco.png`}
-                alt="Oscar Principi Claro"
-                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-100 dark:opacity-0"
+                alt="Oscar Principi"
+                className="absolute inset-0 w-full h-full object-cover opacity-100 dark:opacity-0"
               />
               <img
                 src={`${import.meta.env.BASE_URL}images/perfil/perfil-marron.png`}
-                alt="Oscar Principi Oscuro"
-                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0 dark:opacity-100" 
+                alt="Oscar Principi"
+                className="absolute inset-0 w-full h-full object-cover opacity-0 dark:opacity-100"
               />
             </div>
           </div>
         </div>
 
-        {/* Lado del Contenido */}
-        <div className="space-y-8 order-1 md:order-2">
-          <header className="space-y-2 text-center md:text-left min-h-[120px]">
-            <h1 className="text-4xl md:text-5xl font-light text-text-light dark:text-text-dark leading-tight">
-              <Typewriter
-                onInit={(typewriter) => {
-                  typewriter
-                    .typeString('Desarrollo de')
-                    .typeString('<br />') 
-                    .typeString('<span class="font-black text-primary uppercase tracking-tighter">Software</span>')
-                    .start();
-                }}
-                options={{
-                  autoStart: true,
-                  loop: false,
-                  cursor: "_",
-                  delay: 140,
-                  wrapperClassName: "text-text-light dark:text-text-dark", 
-                }}
-              />
-            </h1>
-          </header>
+        {/* Contenido principal */}
+        <div className="space-y-6">
+          <h1 className="animate-slide-up-2 text-5xl md:text-6xl font-bold text-text-light dark:text-text-dark tracking-tight">
+            Oscar Principi
+          </h1>
 
-          {/* CARD CON SPOTLIGHT */}
-          <div 
-            onMouseMove={handleMouseMove}
-            onMouseEnter={() => setOpacity(1)}
-            onMouseLeave={() => setOpacity(0)}
-            className="relative bg-surface-light dark:bg-surface-dark p-8 rounded-3xl border border-muted-light/10 dark:border-white/5 shadow-xl transition-all duration-300 overflow-hidden"
-          >
-            {/* Efecto de luz (Marrón) */}
+          <div className="animate-slide-up-3 flex justify-center">
+            <div className="line-accent"></div>
+          </div>
+
+          <p className="animate-slide-up-3 text-lg md:text-xl text-muted-light dark:text-muted-dark font-medium">
+            Full Stack Developer
+          </p>
+
+          <p className="animate-slide-up-4 text-base md:text-lg text-muted-light dark:text-muted-dark max-w-lg mx-auto leading-relaxed">
+            Desarrollo soluciones web modernas full stack, creando experiencias intuitivas, código limpio y seguro.
+          </p>
+        </div>
+
+        {/* CTA Button con efecto hover */}
+        <div
+          onMouseMove={handleMouseMove}
+          onMouseEnter={() => setHoveredCard(true)}
+          onMouseLeave={() => setHoveredCard(false)}
+          className="animate-slide-up-4"
+        >
+          <div className="relative inline-block">
             <div
-              className="pointer-events-none absolute -inset-px transition duration-300 z-0"
+              className="pointer-events-none absolute -inset-px transition duration-300 z-0 rounded-lg"
               style={{
-                opacity,
-                background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(139, 69, 19, 0.15), transparent 40%)`,
+                opacity: hoveredCard ? 0.5 : 0,
+                background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(139, 69, 19, 0.2), transparent 40%)`,
               }}
             />
 
-            <div className="relative z-10 space-y-8">
-              <div className="relative">
-                <h3 className="font-bold text-sm uppercase tracking-widest text-primary mb-6 flex items-center justify-center md:justify-start gap-2">
-                  <FaGraduationCap className="text-xl" />
-                  Formación
-                </h3>
-                
-                <div className="space-y-6">
-                  {/* Tecnicatura en Programación */}
-                  <div className="flex flex-col items-center md:items-start border-l-2 border-primary/40 md:pl-4">
-                    <p className="text-text-light dark:text-text-dark text-lg leading-tight font-bold">
-                      Técnico Universitario en Programación
-                    </p>
-                    <span className="text-muted-light dark:text-muted-dark font-medium">UTN FRGP</span>
-                    <div className="mt-2 flex items-center gap-2 px-3 py-1 bg-primary/5 text-primary/70 rounded-full text-[10px] font-black uppercase tracking-widest">
-                      <FaCalendarAlt />
-                      <span>2023 — 2025</span>
-                    </div>
-                  </div>
-
-                  {/* Técnico Electromecánico */}
-                  <div className="flex flex-col items-center md:items-start border-l-2 border-primary/40 md:pl-4">
-                    <p className="text-text-light dark:text-text-dark text-lg leading-tight font-bold">
-                      Técnico Secundario en Electromecánica
-                    </p>
-                    <span className="text-muted-light dark:text-muted-dark font-medium">UTN Albert Thomas</span>
-                    <div className="mt-2 flex items-center gap-2 px-3 py-1 bg-primary/5 text-primary/70 rounded-full text-[10px] font-black uppercase tracking-widest">
-                      <FaCalendarAlt />
-                      <span>2005 — 2007</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <a
+              href="#proyectos"
+              className="relative z-10 inline-flex items-center gap-3 px-8 py-3 bg-amber-700/10 dark:bg-amber-600/10 border border-amber-700/30 dark:border-amber-600/40 rounded-lg text-amber-700 dark:text-amber-500 font-medium hover:bg-amber-700/20 dark:hover:bg-amber-600/20 transition-all duration-300 group"
+            >
+              Ver Proyectos
+              <FaArrowRight className="text-sm group-hover:translate-x-1 transition-transform duration-300" />
+            </a>
           </div>
         </div>
       </div>
