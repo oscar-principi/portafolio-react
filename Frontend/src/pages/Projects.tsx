@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { FiGithub, FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { FiGithub, FiChevronLeft, FiChevronRight, FiExternalLink } from "react-icons/fi";
 import { proyectos } from "../data/projects";
 
 export default function Projects() {
@@ -89,8 +89,20 @@ export default function Projects() {
                         ))}
                       </div>
 
-                      <div className="flex justify-center md:justify-start">
-                        {proyecto.githubUrl ? (
+                      <div className="flex flex-wrap items-center gap-3 justify-center md:justify-start">
+                        {proyecto.liveUrl && (
+                          <a
+                            href={proyecto.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-primary text-white text-sm font-medium hover:bg-primary/90 hover:-translate-y-0.5 transition-all duration-300 shadow-sm shadow-primary/20"
+                          >
+                            <FiExternalLink size={18} />
+                            Visitar sitio
+                          </a>
+                        )}
+
+                        {proyecto.githubUrl && (
                           <a
                             href={proyecto.githubUrl}
                             target="_blank"
@@ -98,9 +110,11 @@ export default function Projects() {
                             className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-muted-light text-text-light dark:text-text-dark text-sm font-medium hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
                           >
                             <FiGithub size={18} />
-                            Ver completo en GitHub
+                            Código
                           </a>
-                        ) : (
+                        )}
+
+                        {!proyecto.githubUrl && !proyecto.liveUrl && (
                           <span className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-muted-light/30 text-muted-light/50 dark:text-muted-dark/50 text-sm font-medium cursor-not-allowed">
                             <FiGithub size={18} />
                             Proyecto privado

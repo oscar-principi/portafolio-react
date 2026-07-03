@@ -68,12 +68,12 @@ export default function Home() {
             <div className="relative w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-2 border-amber-700/30 dark:border-amber-600/40 shadow-lg transition-transform duration-500 group-hover:scale-105">
               <img
                 src={`${import.meta.env.BASE_URL}images/perfil/perfil-blanco.png`}
-                alt="Oscar Principi"
+                alt="Oscar Príncipi"
                 className="absolute inset-0 w-full h-full object-cover opacity-100 dark:opacity-0"
               />
               <img
                 src={`${import.meta.env.BASE_URL}images/perfil/perfil-marron.png`}
-                alt="Oscar Principi"
+                alt="Oscar Príncipi"
                 className="absolute inset-0 w-full h-full object-cover opacity-0 dark:opacity-100"
               />
             </div>
@@ -83,7 +83,7 @@ export default function Home() {
         {/* Contenido principal */}
         <div className="space-y-6">
           <h1 className="animate-slide-up-2 text-5xl md:text-6xl font-bold text-text-light dark:text-text-dark tracking-tight">
-            Oscar Principi
+            Oscar Príncipi
           </h1>
 
           <div className="animate-slide-up-3 flex justify-center">

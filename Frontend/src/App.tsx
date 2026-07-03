@@ -1,13 +1,13 @@
-import { Toaster } from 'sonner';
 import { MainLayout } from "./layouts/MainLayout";
 import Home from "./pages/Home";
+import Roadmap from "./pages/Roadmap";
 import Projects from "./pages/Projects";
 
 function App() {
   return (
     <MainLayout>
-      <Toaster position="bottom-center" richColors />
       <Home />
+      <Roadmap />
       <Projects />
     </MainLayout>
   );

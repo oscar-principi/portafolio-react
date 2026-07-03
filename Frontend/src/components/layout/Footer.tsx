@@ -4,8 +4,8 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-20 mb-6 px-6">
-      <div className="max-w-5xl mx-auto px-8 py-10 rounded-3xl bg-surface-light/60 dark:bg-surface-dark/50 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-lg shadow-black/5 grid grid-cols-1 md:grid-cols-2 gap-10 transition-colors">
+    <footer className="mt-24 border-t border-primary/10 bg-surface-light/60 dark:bg-surface-dark/40 backdrop-blur-sm transition-colors">
+      <div className="max-w-6xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-2 gap-10">
 
         <div className="flex flex-col items-center space-y-4 text-center">
           <div className="flex items-center gap-3">

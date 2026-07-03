@@ -4,9 +4,25 @@ export interface ProyectoItem {
   imageUrl: string;
   tags: string[];
   githubUrl?: string;
+  liveUrl?: string;
 }
 
 export const proyectos: ProyectoItem[] = [
+  {
+    titulo: "Sitio Web: RockLab — Estudio de Desarrollo",
+    descripcion: "Landing comercial del estudio donde trabajo como freelance: comunica el servicio, la propuesta de valor y los tiempos de entrega de forma clara, con el objetivo de convertir visitas en clientes.",
+    imageUrl: "images/proyects/rocklab.png",
+    liveUrl: "https://rocklab.com.ar/#/",
+    tags: ["React", "TypeScript", "Tailwind", "Vite"],
+  },
+  {
+    titulo: "Aplicación Web: Ruleta de Gestión Emocional",
+    descripcion: "Convierte un tema de Recursos Humanos en una dinámica interactiva: gira una ruleta con situaciones reales de gestión emocional en el trabajo, pensada para una clase de la Licenciatura en Administración de la UTN.",
+    imageUrl: "images/proyects/ruleta-gestion-emocional.png",
+    githubUrl: "https://github.com/oscar-principi/ruleta-de-gesti-n-emocional",
+    liveUrl: "https://ruleta-de-gesti-n-emocional.vercel.app/",
+    tags: ["React", "TypeScript", "Tailwind", "Vite"],
+  },
   {
     titulo: "Aplicación Web: Vinoteca",
     descripcion: "Permite a una vinoteca vender online: los clientes navegan el catálogo, arman su carrito y pagan con MercadoPago, mientras el dueño gestiona productos, pedidos y ventas desde un panel con estadísticas.",

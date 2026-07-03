@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"; 
-import { Sun, Moon, Menu, X, Home, Briefcase, type LucideIcon } from "lucide-react";
+import { Sun, Moon, Menu, X, Home, Briefcase, Workflow, type LucideIcon } from "lucide-react";
 
 export default function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -26,7 +26,7 @@ export default function Header() {
     // El favicon (pestaña del navegador) sigue el tema, igual que la foto del hero
     const favicon = document.getElementById("favicon");
     if (favicon) {
-      const imagen = darkMode ? "perfil-marron" : "perfil-blanco";
+      const imagen = darkMode ? "favicon-marron" : "favicon-blanco";
       favicon.setAttribute(
         "href",
         `${import.meta.env.BASE_URL}images/perfil/${imagen}.png`
@@ -37,6 +37,7 @@ export default function Header() {
   // Tipamos el array para que TS sepa que Icon es un LucideIcon
   const navLinks: { name: string; href: string; Icon: LucideIcon }[] = [
     { name: "Home", href: "#home", Icon: Home },
+    { name: "Proceso", href: "#roadmap", Icon: Workflow },
     { name: "Proyectos", href: "#proyectos", Icon: Briefcase },
   ];
 
