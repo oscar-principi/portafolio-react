@@ -34,11 +34,11 @@ export default function Projects() {
       <div className="max-w-5xl mx-auto">
         {/* Encabezado */}
         <div className="flex flex-col items-center mb-12 group">
-          <h2 className="text-4xl md:text-5xl font-black text-text-light dark:text-text-dark tracking-tighter uppercase">
+          <h2 className="text-4xl md:text-5xl font-black text-text-dark tracking-tighter uppercase">
             Proyectos
           </h2>
-          <div className="w-12 h-1.5 bg-primary rounded-full mt-2 transition-all duration-300 group-hover:w-24"></div>
-          <p className="text-muted-light dark:text-muted-dark mt-4 text-center max-w-lg">
+          <div className="w-12 h-1.5 bg-linear-to-r from-primary via-secondary to-accent rounded-full mt-2 transition-all duration-300 group-hover:w-24"></div>
+          <p className="text-muted-dark mt-4 text-center max-w-lg">
             Soluciones reales que resuelven problemas concretos.
           </p>
 
@@ -58,9 +58,9 @@ export default function Projects() {
             >
               {proyectos.map((proyecto, index) => (
                 <div key={index} className="w-full shrink-0 px-1">
-                  <div className="grid md:grid-cols-2 gap-8 items-center bg-surface-light dark:bg-surface-dark rounded-4xl p-6 md:p-10 border border-muted-light/10 dark:border-white/5 shadow-xl">
+                  <div className="grid md:grid-cols-2 gap-8 items-center bg-surface-dark rounded-4xl p-6 md:p-10 border border-primary/20 shadow-[0_0_40px_-12px_rgba(124,58,237,0.4)]">
                     {/* Imagen */}
-                    <div className="w-full h-56 md:h-72 overflow-hidden rounded-3xl bg-white dark:bg-background-dark flex items-center justify-center border border-gray-100 dark:border-gray-800">
+                    <div className="w-full h-56 md:h-72 overflow-hidden rounded-3xl bg-background-dark flex items-center justify-center border border-gray-800">
                       <img
                         src={`${import.meta.env.BASE_URL}${proyecto.imageUrl}`}
                         alt={proyecto.titulo}
@@ -71,10 +71,10 @@ export default function Projects() {
 
                     {/* Contenido */}
                     <div className="flex flex-col text-center md:text-left">
-                      <h3 className="text-2xl md:text-3xl font-bold text-text-light dark:text-text-dark mb-4">
+                      <h3 className="text-2xl md:text-3xl font-bold text-text-dark mb-4">
                         {proyecto.titulo}
                       </h3>
-                      <p className="text-base text-muted-light dark:text-muted-dark leading-relaxed mb-6">
+                      <p className="text-base text-muted-dark leading-relaxed mb-6">
                         {proyecto.descripcion}
                       </p>
 
@@ -107,7 +107,7 @@ export default function Projects() {
                             href={proyecto.githubUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-muted-light text-text-light dark:text-text-dark text-sm font-medium hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
+                            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-muted-dark/40 text-text-dark text-sm font-medium hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
                           >
                             <FiGithub size={18} />
                             Código
@@ -115,7 +115,7 @@ export default function Projects() {
                         )}
 
                         {!proyecto.githubUrl && !proyecto.liveUrl && (
-                          <span className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-muted-light/30 text-muted-light/50 dark:text-muted-dark/50 text-sm font-medium cursor-not-allowed">
+                          <span className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-muted-dark/30 text-muted-dark/50 text-sm font-medium cursor-not-allowed">
                             <FiGithub size={18} />
                             Proyecto privado
                           </span>
@@ -132,14 +132,14 @@ export default function Projects() {
           <button
             onClick={prev}
             aria-label="Proyecto anterior"
-            className="absolute top-1/2 -translate-y-1/2 -left-3 md:-left-6 p-3 rounded-full bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-md border border-primary/20 text-primary shadow-lg hover:bg-primary hover:text-white hover:scale-110 transition-all active:scale-95 z-10"
+            className="absolute top-1/2 -translate-y-1/2 -left-3 md:-left-6 p-3 rounded-full bg-surface-dark/80 backdrop-blur-md border border-primary/20 text-primary shadow-lg hover:bg-primary hover:text-white hover:scale-110 transition-all active:scale-95 z-10"
           >
             <FiChevronLeft size={24} />
           </button>
           <button
             onClick={next}
             aria-label="Proyecto siguiente"
-            className="absolute top-1/2 -translate-y-1/2 -right-3 md:-right-6 p-3 rounded-full bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-md border border-primary/20 text-primary shadow-lg hover:bg-primary hover:text-white hover:scale-110 transition-all active:scale-95 z-10"
+            className="absolute top-1/2 -translate-y-1/2 -right-3 md:-right-6 p-3 rounded-full bg-surface-dark/80 backdrop-blur-md border border-primary/20 text-primary shadow-lg hover:bg-primary hover:text-white hover:scale-110 transition-all active:scale-95 z-10"
           >
             <FiChevronRight size={24} />
           </button>

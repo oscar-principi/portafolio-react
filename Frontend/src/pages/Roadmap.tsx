@@ -150,8 +150,8 @@ function PhaseItem({ phase, index }: { phase: RoadmapPhase; index: number }) {
       <div
         className={`absolute left-0 top-0 w-14 h-14 rounded-2xl flex items-center justify-center border-2 transition-all duration-500 ${
           visible
-            ? "bg-primary border-primary text-white scale-100"
-            : "bg-surface-light dark:bg-surface-dark border-primary/20 text-primary scale-90"
+            ? "bg-linear-to-br from-primary to-secondary border-primary text-white scale-100 shadow-lg shadow-primary/40"
+            : "bg-surface-dark border-primary/20 text-primary scale-90"
         }`}
       >
         <Icon size={24} />
@@ -160,11 +160,11 @@ function PhaseItem({ phase, index }: { phase: RoadmapPhase; index: number }) {
       <span className="text-xs font-black text-primary/60 tracking-widest">
         FASE {String(index + 1).padStart(2, "0")}
       </span>
-      <h3 className="text-xl md:text-2xl font-bold text-text-light dark:text-text-dark mt-1 mb-4">
+      <h3 className="text-xl md:text-2xl font-bold text-text-dark mt-1 mb-4">
         {phase.phase}
       </h3>
 
-      <div className="rounded-2xl border border-primary/15 bg-surface-light/60 dark:bg-surface-dark/40 backdrop-blur-sm p-5 space-y-4 max-w-md shadow-sm">
+      <div className="rounded-2xl border border-primary/20 bg-surface-dark/40 backdrop-blur-sm p-5 space-y-4 max-w-md shadow-[0_0_25px_-8px_rgba(124,58,237,0.35)]">
         {phase.tasks.map((task) => {
           const TaskIcon = task.Icon;
           return (
@@ -173,10 +173,10 @@ function PhaseItem({ phase, index }: { phase: RoadmapPhase; index: number }) {
                 <TaskIcon size={16} />
               </div>
               <div>
-                <p className="text-sm font-bold text-text-light dark:text-text-dark">
+                <p className="text-sm font-bold text-text-dark">
                   {task.title}
                 </p>
-                <p className="text-xs text-muted-light dark:text-muted-dark leading-snug mt-0.5">
+                <p className="text-xs text-muted-dark leading-snug mt-0.5">
                   {task.description}
                 </p>
               </div>
@@ -193,18 +193,18 @@ export default function Roadmap() {
     <section id="roadmap" className="py-24 px-6 scroll-mt-10">
       <div className="max-w-2xl mx-auto">
         <div className="flex flex-col items-center mb-16 group text-center">
-          <h2 className="text-4xl md:text-5xl font-black text-text-light dark:text-text-dark tracking-tighter uppercase">
+          <h2 className="text-4xl md:text-5xl font-black text-text-dark tracking-tighter uppercase">
             Desarrollo Fullstack
           </h2>
-          <div className="w-12 h-1.5 bg-primary rounded-full mt-2 transition-all duration-300 group-hover:w-24"></div>
-          <p className="text-muted-light dark:text-muted-dark mt-4 max-w-lg">
+          <div className="w-12 h-1.5 bg-linear-to-r from-primary via-secondary to-accent rounded-full mt-2 transition-all duration-300 group-hover:w-24"></div>
+          <p className="text-muted-dark mt-4 max-w-lg">
             De la idea al despliegue: las fases que sigo en cada proyecto full stack.
           </p>
         </div>
 
         <div className="relative">
           <div
-            className="absolute left-7 top-0 bottom-0 w-px bg-primary/15"
+            className="absolute left-7 top-0 bottom-0 w-px bg-linear-to-b from-primary/40 via-secondary/25 to-accent/10"
             aria-hidden="true"
           />
           {phases.map((phase, index) => (

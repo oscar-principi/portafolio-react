@@ -1,26 +1,98 @@
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 
+// Paleta de "polvo estelar" — violeta, índigo, cian y blanco
+const STAR_COLORS = ["#a78bfa", "#818cf8", "#67e8f9", "#60a5fa", "#ffffff"];
+
 // Partículas generadas una sola vez (no cambian entre renders)
-const PARTICLES = Array.from({ length: 28 }, (_, i) => ({
+const PARTICLES = Array.from({ length: 32 }, (_, i) => ({
   id: i,
   left: Math.random() * 100, // %
   size: 2 + Math.random() * 4, // px
   duration: 14 + Math.random() * 14, // s
   delay: Math.random() * 18, // s
   drift: (Math.random() - 0.5) * 80, // px de deriva horizontal
+  color: STAR_COLORS[i % STAR_COLORS.length],
 }));
+
+// Estrellas fijas centelleantes de fondo (solo visibles en modo oscuro)
+const STARS = Array.from({ length: 60 }, (_, i) => ({
+  id: i,
+  top: Math.random() * 100,
+  left: Math.random() * 100,
+  size: 1 + Math.random() * 1.6,
+  duration: 2.5 + Math.random() * 3.5,
+  delay: Math.random() * 5,
+}));
+
+// Patrón de circuito decorativo, estilo "tech", en las esquinas
+function CircuitPattern({ className, patternId }: { className: string; patternId: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={`pointer-events-none absolute text-primary/35 ${className}`}
+      viewBox="0 0 240 240"
+      fill="none"
+    >
+      <defs>
+        <pattern id={patternId} width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M0 20 H14 V0" stroke="currentColor" strokeWidth="1" />
+          <path d="M26 40 V26 H40" stroke="currentColor" strokeWidth="1" />
+          <path d="M14 0 V-10" stroke="currentColor" strokeWidth="1" />
+          <circle cx="14" cy="0" r="1.8" fill="currentColor" />
+          <circle cx="0" cy="20" r="1.8" fill="currentColor" />
+          <circle cx="40" cy="26" r="1.8" fill="currentColor" />
+          <circle cx="26" cy="40" r="1.8" fill="currentColor" />
+        </pattern>
+        <linearGradient id={`${patternId}-fade`} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="white" stopOpacity="1" />
+          <stop offset="100%" stopColor="white" stopOpacity="0" />
+        </linearGradient>
+        <mask id={`${patternId}-mask`}>
+          <rect width="100%" height="100%" fill={`url(#${patternId}-fade)`} />
+        </mask>
+      </defs>
+      <rect width="100%" height="100%" fill={`url(#${patternId})`} mask={`url(#${patternId}-mask)`} />
+    </svg>
+  );
+}
 
 export function MainLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative min-h-screen bg-background-light dark:bg-background-dark overflow-x-hidden">
-      {/* Resplandor "sol" de fondo — cae desde el header hacia abajo */}
+    <div className="relative min-h-screen bg-background-dark overflow-x-hidden">
+      {/* Nebulosa de fondo — violeta + índigo cayendo desde el header */}
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed inset-x-0 top-0 h-[70vh] z-0 sun-glow"
+        className="pointer-events-none fixed inset-x-0 top-0 h-[75vh] z-0 nebula-glow"
+      />
+      {/* Segunda capa de nebulosa — rojo, desde el otro extremo */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-x-0 top-0 h-[70vh] z-0 nebula-glow-2"
       />
 
-      {/* Partículas flotantes que suben hacia el sol */}
+      {/* Estrellas fijas centelleantes */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-0 z-0 overflow-hidden stars"
+      >
+        {STARS.map((s) => (
+          <span
+            key={s.id}
+            className="star"
+            style={{
+              top: `${s.top}%`,
+              left: `${s.left}%`,
+              width: `${s.size}px`,
+              height: `${s.size}px`,
+              animationDuration: `${s.duration}s`,
+              animationDelay: `${s.delay}s`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Polvo estelar ascendente */}
       <div
         aria-hidden="true"
         className="pointer-events-none fixed inset-0 z-0 overflow-hidden particles"
@@ -37,13 +109,21 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
               animationDelay: `${p.delay}s`,
               // @ts-expect-error CSS custom property
               "--drift": `${p.drift}px`,
+              "--particle-color": p.color,
             }}
           />
         ))}
       </div>
 
+      {/* Circuitos decorativos — esquinas, estética tech */}
+      <CircuitPattern className="top-0 left-0 w-56 h-56 md:w-80 md:h-80" patternId="circuit-tl" />
+      <CircuitPattern
+        className="bottom-0 right-0 w-56 h-56 md:w-80 md:h-80 rotate-180"
+        patternId="circuit-br"
+      />
+
       <style>{`
-        @keyframes sunPulse {
+        @keyframes nebulaPulse {
           0%, 100% {
             opacity: 0.55;
             transform: translateY(0) scale(1);
@@ -54,36 +134,64 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
           }
         }
 
-        .sun-glow {
+        .nebula-glow {
           background: radial-gradient(
-            ellipse 80% 60% at 50% -10%,
-            rgba(217, 119, 6, 0.35),
-            rgba(139, 69, 19, 0.18) 40%,
+            ellipse 85% 60% at 25% -10%,
+            rgba(124, 58, 237, 0.45),
+            rgba(67, 56, 202, 0.28) 40%,
             transparent 70%
           );
-          animation: sunPulse 8s ease-in-out infinite;
+          animation: nebulaPulse 9s ease-in-out infinite;
         }
 
-        :root.dark .sun-glow {
+        .nebula-glow-2 {
           background: radial-gradient(
-            ellipse 80% 60% at 50% -10%,
-            rgba(120, 53, 15, 0.55),
-            rgba(217, 119, 6, 0.15) 40%,
-            transparent 70%
+            ellipse 65% 50% at 85% 5%,
+            rgba(37, 99, 235, 0.30),
+            transparent 65%
           );
+          animation: nebulaPulse 12s ease-in-out infinite reverse;
         }
 
-        /* --- Partículas flotantes --- */
+        /* --- Estrellas fijas centelleantes --- */
+        @keyframes twinkle {
+          0%, 100% { opacity: 0.15; transform: scale(0.8); }
+          50% { opacity: 1; transform: scale(1.15); }
+        }
+
+        .star {
+          position: absolute;
+          border-radius: 9999px;
+          background: #ffffff;
+          box-shadow: 0 0 4px 1px rgba(167, 139, 250, 0.8);
+          animation-name: twinkle;
+          animation-timing-function: ease-in-out;
+          animation-iteration-count: infinite;
+        }
+
+        /* --- Polvo estelar ascendente --- */
         @keyframes floatUp {
           0% {
             transform: translateY(0) translateX(0);
             opacity: 0;
           }
-          10% {
-            opacity: 0.7;
+          8% {
+            opacity: 0.85;
+          }
+          22% {
+            opacity: 0.3;
+          }
+          38% {
+            opacity: 0.9;
+          }
+          55% {
+            opacity: 0.35;
+          }
+          70% {
+            opacity: 0.8;
           }
           90% {
-            opacity: 0.7;
+            opacity: 0.6;
           }
           100% {
             transform: translateY(-105vh) translateX(var(--drift, 0px));
@@ -95,23 +203,21 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
           position: absolute;
           bottom: -10px;
           border-radius: 9999px;
-          background: rgba(180, 83, 9, 0.6);
-          box-shadow: 0 0 6px 1px rgba(217, 119, 6, 0.5);
+          background: var(--particle-color, #7c3aed);
+          box-shadow: 0 0 6px 1px var(--particle-color, #7c3aed);
+          opacity: 0.75;
           animation-name: floatUp;
           animation-timing-function: linear;
           animation-iteration-count: infinite;
         }
 
-        :root.dark .particle {
-          background: rgba(251, 191, 36, 0.55);
-          box-shadow: 0 0 8px 2px rgba(245, 158, 11, 0.45);
-        }
-
         @media (prefers-reduced-motion: reduce) {
-          .sun-glow {
+          .nebula-glow,
+          .nebula-glow-2 {
             animation: none;
           }
-          .particles {
+          .particles,
+          .stars {
             display: none;
           }
         }

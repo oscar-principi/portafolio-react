@@ -5,17 +5,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        "bg-light": "#ffffff",
-        "bg-dark": "#161f29ff",
-        "surface-light": "#2b3035ff",
-        "surface-dark": "#1b263b",
-        "text-light": "#212529",
-        "text-dark": "#e0e1dd",
+        "bg-light": "#fbfaff",
+        "bg-dark": "#0a0716",
+        "surface-light": "#f1ecfb",
+        "surface-dark": "#150f2b",
+        "text-light": "#1c1730",
+        "text-dark": "#ede9fe",
         primary: {
-          light: "#A0522D",  // marrón claro
-          DEFAULT: "#8B4513", // marrón estándar
-          dark: "#5C2A0C",   // marrón oscuro
+          light: "#a78bfa",  // violeta medio
+          DEFAULT: "#7c3aed", // violeta profundo
+          dark: "#5b21b6",   // violeta oscuro
         },
+        secondary: "#4338ca", // índigo profundo
+        accent: "#2563eb",    // azul intenso
       },
       keyframes: {
         'spin-slow': { from: { transform: 'rotate(0deg)' }, to: { transform: 'rotate(360deg)' } }

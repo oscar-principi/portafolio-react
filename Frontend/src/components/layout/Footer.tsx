@@ -4,35 +4,30 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-24 border-t border-primary/10 bg-surface-light/60 dark:bg-surface-dark/40 backdrop-blur-sm transition-colors">
+    <footer className="mt-24 border-t border-primary/20 bg-surface-dark/40 backdrop-blur-sm transition-colors">
       <div className="max-w-6xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-2 gap-10">
 
         <div className="flex flex-col items-center space-y-4 text-center">
           <div className="flex items-center gap-3">
             <img
-              src={`${import.meta.env.BASE_URL}images/logos/logo-utn-oscuro.png`}
-              alt="Logo UTN"
-              className="h-10 w-auto block dark:hidden"
-            />
-            <img
               src={`${import.meta.env.BASE_URL}images/logos/logo-utn-claro.png`}
               alt="Logo UTN"
-              className="h-10 w-auto hidden dark:block"
+              className="h-10 w-auto"
             />
           </div>
-          
+
           <div>
-            <p className="text-sm font-bold text-text-light dark:text-text-dark">
+            <p className="text-sm font-bold text-text-dark">
               Desarrollador de Software – Oscar Príncipi
             </p>
-            <p className="text-xs text-muted-light dark:text-muted-dark mt-1">
+            <p className="text-xs text-muted-dark mt-1">
               © {year} OscarDev.
             </p>
           </div>
         </div>
 
         <div className="flex flex-col items-center space-y-4 text-center">
-          <p className="text-xs font-bold uppercase tracking-widest ">
+          <p className="text-xs font-bold uppercase tracking-widest text-primary">
             Visitá mis perfiles
           </p>
           <div className="flex gap-4">
