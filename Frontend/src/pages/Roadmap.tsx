@@ -49,11 +49,6 @@ const phases: RoadmapPhase[] = [
         Icon: Network,
       },
       {
-        title: "Patrones de Diseño",
-        description: "Estándares y soluciones reutilizables basadas en buenas prácticas de la industria.",
-        Icon: Puzzle,
-      },
-      {
         title: "Base de Datos",
         description: "Modelado de datos orientado a la integridad y al rendimiento del sistema.",
         Icon: Database,
@@ -198,7 +193,7 @@ export default function Roadmap() {
           </h2>
           <div className="w-12 h-1.5 bg-linear-to-r from-primary via-secondary to-accent rounded-full mt-2 transition-all duration-300 group-hover:w-24"></div>
           <p className="text-muted-dark mt-4 max-w-lg">
-            De la idea al despliegue: las fases que sigo en cada proyecto full stack.
+            Del problema a la solución. 
           </p>
         </div>
 

@@ -15,13 +15,9 @@ export default function Header() {
     <>
       <header className="fixed top-0 inset-x-0 z-50 bg-bg-dark/70 backdrop-blur-xl border-b border-primary/20 shadow-lg shadow-primary/10 transition-all duration-300">
         <div className="max-w-6xl mx-auto flex items-center justify-between gap-4 px-6 h-16 sm:h-20">
-          <a
-            href="#home"
-            aria-label="Oscar Príncipi — Inicio"
-            className="shrink-0 flex items-center justify-center h-10 w-10 sm:h-11 sm:w-11 rounded-xl bg-linear-to-br from-primary to-secondary text-white font-bold text-lg sm:text-xl tracking-tight shadow-lg shadow-primary/30 hover:scale-105 transition-transform duration-300"
-          >
-            OP
-          </a>
+          <h1 className="text-lg sm:text-xl font-bold tracking-tight whitespace-nowrap bg-linear-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+            Oscar Príncipi
+          </h1>
 
           <nav className="hidden lg:flex items-center gap-1">
             {navLinks.map(({ name, href, Icon }) => (

@@ -25,38 +25,6 @@ const STARS = Array.from({ length: 60 }, (_, i) => ({
   delay: Math.random() * 5,
 }));
 
-// Patrón de circuito decorativo, estilo "tech", en las esquinas
-function CircuitPattern({ className, patternId }: { className: string; patternId: string }) {
-  return (
-    <svg
-      aria-hidden="true"
-      className={`pointer-events-none absolute text-primary/35 ${className}`}
-      viewBox="0 0 240 240"
-      fill="none"
-    >
-      <defs>
-        <pattern id={patternId} width="40" height="40" patternUnits="userSpaceOnUse">
-          <path d="M0 20 H14 V0" stroke="currentColor" strokeWidth="1" />
-          <path d="M26 40 V26 H40" stroke="currentColor" strokeWidth="1" />
-          <path d="M14 0 V-10" stroke="currentColor" strokeWidth="1" />
-          <circle cx="14" cy="0" r="1.8" fill="currentColor" />
-          <circle cx="0" cy="20" r="1.8" fill="currentColor" />
-          <circle cx="40" cy="26" r="1.8" fill="currentColor" />
-          <circle cx="26" cy="40" r="1.8" fill="currentColor" />
-        </pattern>
-        <linearGradient id={`${patternId}-fade`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="white" stopOpacity="1" />
-          <stop offset="100%" stopColor="white" stopOpacity="0" />
-        </linearGradient>
-        <mask id={`${patternId}-mask`}>
-          <rect width="100%" height="100%" fill={`url(#${patternId}-fade)`} />
-        </mask>
-      </defs>
-      <rect width="100%" height="100%" fill={`url(#${patternId})`} mask={`url(#${patternId}-mask)`} />
-    </svg>
-  );
-}
-
 export function MainLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="relative min-h-screen bg-background-dark overflow-x-hidden">
@@ -114,13 +82,6 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
           />
         ))}
       </div>
-
-      {/* Circuitos decorativos — esquinas, estética tech */}
-      <CircuitPattern className="top-0 left-0 w-56 h-56 md:w-80 md:h-80" patternId="circuit-tl" />
-      <CircuitPattern
-        className="bottom-0 right-0 w-56 h-56 md:w-80 md:h-80 rotate-180"
-        patternId="circuit-br"
-      />
 
       <style>{`
         @keyframes nebulaPulse {
