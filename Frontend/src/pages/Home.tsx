@@ -57,15 +57,6 @@ export default function Home() {
           height: 3px;
           background: linear-gradient(90deg, #7c3aed, #2563eb, rgba(37, 99, 235, 0));
         }
-
-        @keyframes spinSlow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-
-        .tech-ring {
-          animation: spinSlow 14s linear infinite;
-        }
       `}</style>
 
       <div className="max-w-2xl w-full text-center space-y-12">
@@ -82,40 +73,6 @@ export default function Home() {
                 alt="Oscar Príncipi"
                 className="absolute inset-0 w-full h-full object-cover"
               />
-            </div>
-
-            {/* Estrella de neón orbitando, con estela que se apaga */}
-            <div className="absolute inset-0 w-full h-full transition-transform duration-500 group-hover:scale-105">
-              <div className="absolute inset-0 w-full h-full tech-ring">
-                <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full overflow-visible">
-                  <defs>
-                    <linearGradient id="trail-grad" x1="3.95" y1="33.24" x2="50" y2="1" gradientUnits="userSpaceOnUse">
-                      <stop offset="0%" stopColor="#2563eb" stopOpacity="0" />
-                      <stop offset="55%" stopColor="#7c3aed" stopOpacity="0.55" />
-                      <stop offset="100%" stopColor="#c4b5fd" stopOpacity="0.95" />
-                    </linearGradient>
-                    <radialGradient id="head-grad" cx="35%" cy="35%" r="65%">
-                      <stop offset="0%" stopColor="#e9d5ff" />
-                      <stop offset="50%" stopColor="#a78bfa" />
-                      <stop offset="100%" stopColor="#4338ca" />
-                    </radialGradient>
-                  </defs>
-                  <path
-                    d="M3.95 33.24A49 49 0 0 1 50 1"
-                    fill="none"
-                    stroke="url(#trail-grad)"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                  />
-                  <circle
-                    cx="50"
-                    cy="1"
-                    r="2.4"
-                    fill="url(#head-grad)"
-                    style={{ filter: "drop-shadow(0 0 2px #a78bfa) drop-shadow(0 0 4px #2563eb)" }}
-                  />
-                </svg>
-              </div>
             </div>
           </div>
         </div>
