@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import {
   ClipboardList,
   Network,
-  Puzzle,
   Database,
   Server,
   LayoutGrid,
